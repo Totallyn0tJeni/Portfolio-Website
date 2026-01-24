@@ -8,9 +8,9 @@ import { AnimatePresence } from "framer-motion";
 
 // Pages
 import Home from "@/pages/Home";
-import Clubs from "@/pages/Clubs";
-import ClubDetail from "@/pages/ClubDetail";
-import Marketing from "@/pages/Marketing";
+import Clubs from "./pages/Clubs";
+import ClubDetail from "./pages/ClubDetail";
+import Marketing from "./pages/Marketing";
 import Coding from "@/pages/Coding";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
