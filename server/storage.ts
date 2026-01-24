@@ -1,38 +1,57 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { db } from "./db";
+import {
+  clubs, marketingWork, projects, messages,
+  type Club, type InsertClub,
+  type MarketingWork, type InsertMarketingWork,
+  type Project, type InsertProject,
+  type Message, type InsertMessage
+} from "@shared/schema";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  getClubs(): Promise<Club[]>;
+  getMarketingWork(): Promise<MarketingWork[]>;
+  getProjects(): Promise<Project[]>;
+  createMessage(message: InsertMessage): Promise<Message>;
+  
+  // Seed methods
+  createClub(club: InsertClub): Promise<Club>;
+  createMarketingWork(work: InsertMarketingWork): Promise<MarketingWork>;
+  createProject(project: InsertProject): Promise<Project>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-
-  constructor() {
-    this.users = new Map();
+export class DatabaseStorage implements IStorage {
+  async getClubs(): Promise<Club[]> {
+    return await db.select().from(clubs);
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  async getMarketingWork(): Promise<MarketingWork[]> {
+    return await db.select().from(marketingWork);
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+  async getProjects(): Promise<Project[]> {
+    return await db.select().from(projects);
   }
 
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async createMessage(message: InsertMessage): Promise<Message> {
+    const [newMessage] = await db.insert(messages).values(message).returning();
+    return newMessage;
+  }
+
+  async createClub(club: InsertClub): Promise<Club> {
+    const [newClub] = await db.insert(clubs).values(club).returning();
+    return newClub;
+  }
+
+  async createMarketingWork(work: InsertMarketingWork): Promise<MarketingWork> {
+    const [newWork] = await db.insert(marketingWork).values(work).returning();
+    return newWork;
+  }
+
+  async createProject(project: InsertProject): Promise<Project> {
+    const [newProject] = await db.insert(projects).values(project).returning();
+    return newProject;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
