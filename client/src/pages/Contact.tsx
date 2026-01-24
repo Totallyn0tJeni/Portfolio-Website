@@ -7,7 +7,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Send, Loader2, Mail, Github, Twitter, Linkedin } from "lucide-react";
+import { Send, Loader2, Mail, Github, Twitter, Linkedin, FileText } from "lucide-react";
 
 export default function Contact() {
   const sendMessage = useSendMessage();
@@ -47,21 +47,25 @@ export default function Contact() {
           <div className="glass-panel p-6 rounded-2xl space-y-4">
             <h3 className="text-xl font-bold text-white mb-4">Find me online</h3>
             <div className="grid grid-cols-2 gap-4">
-              <a href="mailto:hello@example.com" className="glass-button p-4 rounded-xl flex flex-col items-center justify-center gap-2 text-center hover:bg-purple-500/20 hover:border-purple-500/30">
+              <a href="mailto:hello@example.com" className="glass-button p-4 rounded-xl flex flex-col items-center justify-center gap-2 text-center hover:bg-purple-500/20 hover:border-purple-500/30 transition-all duration-300">
                 <Mail size={24} className="text-purple-300" />
                 <span className="text-sm">Email</span>
               </a>
-              <a href="https://github.com" target="_blank" rel="noopener" className="glass-button p-4 rounded-xl flex flex-col items-center justify-center gap-2 text-center hover:bg-gray-500/20 hover:border-gray-500/30">
+              <a href="https://github.com" target="_blank" rel="noopener" className="glass-button p-4 rounded-xl flex flex-col items-center justify-center gap-2 text-center hover:bg-gray-500/20 hover:border-gray-500/30 transition-all duration-300">
                 <Github size={24} className="text-white" />
                 <span className="text-sm">GitHub</span>
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener" className="glass-button p-4 rounded-xl flex flex-col items-center justify-center gap-2 text-center hover:bg-blue-500/20 hover:border-blue-500/30">
+              <a href="https://twitter.com" target="_blank" rel="noopener" className="glass-button p-4 rounded-xl flex flex-col items-center justify-center gap-2 text-center hover:bg-blue-500/20 hover:border-blue-500/30 transition-all duration-300">
                 <Twitter size={24} className="text-blue-300" />
                 <span className="text-sm">Twitter</span>
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener" className="glass-button p-4 rounded-xl flex flex-col items-center justify-center gap-2 text-center hover:bg-blue-700/20 hover:border-blue-700/30">
+              <a href="https://linkedin.com" target="_blank" rel="noopener" className="glass-button p-4 rounded-xl flex flex-col items-center justify-center gap-2 text-center hover:bg-blue-700/20 hover:border-blue-700/30 transition-all duration-300">
                 <Linkedin size={24} className="text-blue-200" />
                 <span className="text-sm">LinkedIn</span>
+              </a>
+              <a href="/resume.pdf" target="_blank" rel="noopener" className="glass-button p-4 rounded-xl flex flex-col items-center justify-center gap-2 text-center hover:bg-emerald-500/20 hover:border-emerald-500/30 transition-all duration-300 col-span-2">
+                <FileText size={24} className="text-emerald-300" />
+                <span className="text-sm">Download Resume</span>
               </a>
             </div>
           </div>

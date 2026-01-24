@@ -4,40 +4,44 @@ import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <PageTransition className="flex flex-col items-center justify-center min-h-[80vh] text-center">
-      {/* Profile Photo Placeholder */}
+    <PageTransition className="flex flex-col lg:flex-row items-center justify-center min-h-[80vh] gap-12 px-6">
+      {/* Cutout Image Section */}
       <motion.div 
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
+        initial={{ x: -50, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
         transition={{ delay: 0.1 }}
-        className="relative group mb-8"
+        className="relative group lg:w-1/2 flex justify-center lg:justify-end"
       >
-        <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-        <div className="relative w-40 h-40 rounded-full bg-slate-800 overflow-hidden border-2 border-white/20 flex items-center justify-center">
-          {/* Replace with actual image */}
-          <span className="text-4xl text-white/50">JD</span> 
+        <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-[450px] lg:h-[450px] animate-float">
+          {/* Glass background for the "cutout" effect container */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 to-pink-500/10 rounded-3xl blur-2xl -z-10"></div>
+          <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10 backdrop-blur-sm bg-white/5 shadow-2xl">
+            {/* Placeholder for cutout image - in real use, this would be an <img> with object-cover */}
+            <div className="w-full h-full flex items-center justify-center bg-gradient-to-b from-transparent to-black/40">
+              <span className="text-6xl font-bold text-white/20">IMAGE</span>
+            </div>
+          </div>
+          
+          {/* Decorative floating elements */}
+          <div className="absolute -top-4 -right-4 w-12 h-12 bg-purple-500/30 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute -bottom-8 -left-8 w-16 h-16 bg-pink-500/20 rounded-full blur-xl animate-pulse delay-700"></div>
         </div>
       </motion.div>
 
       {/* Intro Text */}
-      <div className="glass-panel p-8 rounded-2xl max-w-2xl w-full mb-8 backdrop-blur-xl bg-white/5 border-white/10">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold mb-4">
-          Hi, I'm <span className="text-gradient">John Doe</span>
-        </h1>
-        <p className="text-lg md:text-xl text-white/80 leading-relaxed font-light">
-          A passionate developer and creative thinker building digital experiences that matter.
-          I specialize in full-stack development, community leadership, and marketing design.
-          Welcome to my digital garden.
-        </p>
-      </div>
-
-      {/* Social Links */}
-      <div className="flex flex-wrap justify-center gap-4">
-        <SocialButton href="https://github.com" icon={Github} label="GitHub" />
-        <SocialButton href="https://linkedin.com" icon={Linkedin} label="LinkedIn" />
-        <SocialButton href="https://twitter.com" icon={Twitter} label="Twitter" />
-        <SocialButton href="mailto:hello@example.com" icon={Mail} label="Email" />
-        <SocialButton href="/resume.pdf" icon={FileText} label="Resume" />
+      <div className="lg:w-1/2 text-left space-y-6">
+        <div className="glass-panel p-8 md:p-10 rounded-3xl backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl relative overflow-hidden group">
+          <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-purple-500 to-pink-500 opacity-50"></div>
+          
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-display font-bold mb-4 tracking-tight">
+            Hi, I'm <br/><span className="text-gradient">John Doe</span>
+          </h1>
+          <p className="text-lg md:text-xl text-white/80 leading-relaxed font-light">
+            A passionate developer and creative thinker building digital experiences that matter.
+            I specialize in full-stack development, community leadership, and marketing design.
+            Welcome to my digital garden.
+          </p>
+        </div>
       </div>
     </PageTransition>
   );
