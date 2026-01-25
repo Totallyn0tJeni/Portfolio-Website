@@ -48,40 +48,80 @@ async function seedDatabase() {
   if (clubs.length === 0) {
     await storage.createClub({
       name: "Brampton FBLC, JEC & TA",
-      role: "Vice President",
-      description: "Led initiatives and organized events for future business leaders.",
+      role: "Deputy Director of Marketing Department",
+      description: "As Deputy Director of Marketing, I assumed a leadership role in overseeing and supporting the marketing team while working closely with executive leadership to drive organizational goals. I contributed to the development and execution of marketing strategies for large-scale events and initiatives, ensuring alignment with the organization’s mission and brand identity. I guided team members by delegating responsibilities, reviewing deliverables, and providing feedback to maintain high standards of quality and consistency. Additionally, I supported strategic planning, evaluated campaign effectiveness, and helped improve engagement through targeted, data-informed marketing approaches, strengthening both team performance and organizational visibility.",
       category: "main",
       images: ["https://images.unsplash.com/photo-1517245386807-bb43f82c33c4"],
       link: "#"
     });
+    
     await storage.createClub({
       name: "Chinguacousy Robotics",
-      role: "Lead Programmer",
-      description: "Developed autonomous code for competition robots.",
+      role: "Buisness Co-Lead & Social Media Coordinator",
+      description: "As the Business Co-Lead & Head Social Media Manager for Chinguacousy Robotics, I managed and represented the team at competitions while leading community outreach events like Grade 9 Orientation and the SciTech Open House, effectively engaging students and sponsors. I spearheaded social media initiatives, boosting community engagement across multiple platforms, and designed marketing materials, including posters, brochures, banners, and presentations, to enhance the team’s outreach both online and in person. As the lead photographer and videographer, I oversaw media production to ensure professional documentation of competitions and events. Additionally, I directed a media team, managing logistics and coverage to create compelling promotional content. I also led scouting efforts at FRC competitions, gathering key intelligence on competitors to refine team strategies, and secured sponsorships to fund robot development, club initiatives, and competition participation. Additionally, we won the 2025 REEFSCAPE FIRST Team Spirit Award at the Ontario District Humber College Polytechnic Event.",
       category: "main",
       images: ["https://images.unsplash.com/photo-1485827404703-89b55fcc595e"],
       link: "#"
     });
+    
     await storage.createClub({
-      name: "STAC",
-      role: "Member",
-      description: "Student Technology Advisory Council - bridging tech and students.",
+      name: "Sci-Tech Activity Committee (STAC)",
+      role: "Marketing & PR Director",
+      description: "Over my tenure with the SciTech Activity Committee, I contributed to shaping and promoting innovative, engaging experiences for the school community. Starting as a Research & Development Officer, I designed technical challenges, planned major events such as SteamWorks, WolfHacks, and the SciTech Open House, and captured high-quality photography and videography to showcase these initiatives. I then advanced to Marketing & Public Relations Officer, leading content creation across social media, presentations, and promotional campaigns that generated over 75,000 views and significantly increased engagement and event turnout. Most recently, as Director of Marketing & Public Relations, I oversaw the Marketing & PR team, developed strategic campaigns, coordinated with event leads, and ensured consistent branding and messaging across all initiatives. Throughout my time with STAC, I combined creativity, leadership, and technical expertise to enhance event visibility, strengthen community engagement, and leave a lasting impact on the organization.",
       category: "main",
       images: ["https://images.unsplash.com/photo-1531482615713-2afd69097998"],
       link: "#"
     });
+    
     await storage.createClub({
       name: "Superposition Toronto",
-      role: "Event Coordinator",
-      description: "Organized hackathons for underrepresented groups in tech.",
+      role: "Director of Communications",
+      description: "As Director of Communications at Superposition Toronto, I lead the organization’s external and internal communications strategy, overseeing brand voice, digital presence, and public-facing initiatives. I design and manage social media and promotional content, ensuring consistent, high-quality visuals and messaging across platforms. In addition, I host and lead bi-weekly communications meetings to plan content, align team goals, and coordinate upcoming campaigns and events. Through strategic storytelling, visual design, and cross-team collaboration, I work to increase engagement, strengthen brand identity, and effectively connect Superposition Toronto with its community and stakeholders.",
       category: "main",
       images: ["https://images.unsplash.com/photo-1540575467063-178a50c2df87"],
       link: "#"
     });
+    
     await storage.createClub({
-      name: "Debate Club",
-      role: "Member",
-      description: "Participated in regional debate tournaments.",
+      name: "Student Activity Committee",
+      role: "Videographer",
+      description: "As a Videographer for the Chinguacousy Student Activity Council, I played a key role in organizing major student events, including Grade 9 Orientation and Semi-Formal, ensuring seamless execution and engagement. I created eye-catching promotional materials, such as social media content, presentations, and flyers, helping to boost event awareness and attract around 400 attendees. Leading a media team, I captured high-quality event photography and videography for promotional and archival purposes. Additionally, I assisted in troubleshooting technical and logistical challenges to ensure smooth event operations.",
+      category: "other",
+      images: [],
+      link: "#"
+    });
+
+    await storage.createClub({
+      name: "Sending Sunshine Chinguacousy Chapter",
+      role: "Advertizing Manager",
+      description: "Managed advertising and outreach for the Chinguacousy Chapter's initiatives under Sending Sunshine. Designed promotional materials, coordinated social media campaigns, and boosted community engagement for student-led events and programs.",
+      category: "other",
+      images: [],
+      link: "#"
+    });
+
+    await storage.createClub({
+      name: "Gujurati Student Society",
+      role: "Marketing Director",
+      description: "As Marketing Director & Lead Social Media Manager, I lead the organization’s overall marketing strategy and oversee its digital presence across all social media platforms. I plan, design, and manage high-impact visual and written content, ensuring consistent branding and messaging across campaigns and initiatives. In this role, I analyze engagement metrics to optimize content performance, schedule and execute promotional campaigns, and adapt strategies based on audience insights. I also coordinate marketing efforts across teams, support event promotion, and guide content planning to drive increased visibility, sustained audience growth, and meaningful community engagement.",
+      category: "other",
+      images: [],
+      link: "#"
+    });
+
+    await storage.createClub({
+      name: "Chinguacousy Secondary School",
+      role: "Student Ambassador",
+      description: "Represented the student body as a School Ambassador, supporting school events, leading campus tours, and promoting a positive school culture. As a member of the Wolfpack student leadership team, collaborated on school spirit initiatives, mentored peers, and contributed to community-building efforts within the school.",
+      category: "other",
+      images: [],
+      link: "#"
+    });
+
+    await storage.createClub({
+      name: "Chinguacousy Scholars",
+      role: "Executive Marketing Director ",
+      description: "As Executive Marketing Director for Ching Scholars, I lead the organization’s overall marketing strategy and brand development, overseeing social media presence, promotional campaigns, and community outreach. I design and manage high-impact visual content, plan and execute marketing initiatives for events and programs, and ensure consistent messaging across all platforms. I also coordinate the marketing team through regular planning meetings, delegate tasks, and collaborate with executive members to align marketing goals with the organization’s mission, driving engagement, visibility, and sustained growth within the school community.",
       category: "other",
       images: [],
       link: "#"
@@ -92,25 +132,19 @@ async function seedDatabase() {
   if (projects.length === 0) {
     await storage.createProject({
       title: "Portfolio Website",
-      description: "A glassmorphism-styled personal portfolio.",
-      techStack: ["React", "TypeScript", "Tailwind CSS"],
-      repoLink: "https://github.com/user/portfolio",
+      description: "Designed and developed a personal portfolio website to showcase my achievements, marketing work, coding projects, club involvement, and resume. Built a responsive, modern interface using React and TypeScript, with a Node.js backend to manage content and functionality. Focused on clear information architecture, performance, and presenting a strong personal brand online.",
+      techStack: ["React.js", "TypeScript", "Tailwind CSS", "Node.js"],
+      repoLink: "https://github.com/Totallyn0tJeni/Portfolio-Website",
       demoLink: "#"
     });
     await storage.createProject({
-      title: "E-commerce Dashboard",
-      description: "Admin dashboard for managing products and orders.",
-      techStack: ["Vue.js", "Node.js", "PostgreSQL"],
-      repoLink: "https://github.com/user/dashboard",
+      title: "Smart Home Display",
+      description: "Designed and engineered a smart home display system that integrates software, physical hardware, and third-party applications into a centralized home information and control platform. Developed a responsive front-end interface using React and TypeScript to display real-time data and provide intuitive user interaction, supported by a Node.js backend that manages system logic, API requests, and data flow between the interface, external applications, and hardware components. Integrated the system with various applications and services through APIs to aggregate and display relevant information in a unified dashboard. Utilized Python to communicate with hardware components and simulate smart home functionality, enabling features such as device status monitoring and basic control operations. Emphasized full-stack development,  hardware-software integration, and real-world problem solving.",
+      techStack: ["React.js", "Node.js", "PostgreSQL", "Python"],
+      repoLink: "https://github.com/Totallyn0tJeni/Smart-display",
       demoLink: "#"
     });
-    await storage.createProject({
-      title: "Weather App",
-      description: "Real-time weather application using OpenWeatherMap API.",
-      techStack: ["React", "API Integration"],
-      repoLink: "https://github.com/user/weather",
-      demoLink: "#"
-    });
+    
   }
 
   const marketing = await storage.getMarketingWork();
@@ -120,7 +154,7 @@ async function seedDatabase() {
       await storage.createMarketingWork({
         title: `Marketing Campaign ${i}`,
         description: "Social media graphics and branding materials.",
-        imageUrl: `https://images.unsplash.com/photo-${i % 2 === 0 ? '1542744173-8e7e53415bb0' : '1557804506-669a67965ba0'}`,
+        imageUrl: "#",
         category: "Social Media"
       });
     }
