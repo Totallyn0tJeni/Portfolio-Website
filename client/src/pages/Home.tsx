@@ -20,7 +20,7 @@ export default function Home() {
             {/* Placeholder for cutout image - in real use, this would be an <img> with object-cover */}
             <div className="w-full h-full flex items-center justify-center bg-gradient-to-b from-transparent to-black/40">
               <img
-                src="/Portfolio Images/wmremove-transformed (1).png"
+                src="/Portfolio Images/download.png"
                 alt="Jenisha Patel"
                 className="object-cover rounded-3xl w-full h-full"
               />

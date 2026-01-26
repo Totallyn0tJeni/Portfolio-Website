@@ -150,6 +150,11 @@ async function seedDatabase() {
   const marketing = await storage.getMarketingWork();
   if (marketing.length === 0) {
     const marketingItems = [
+      { title: "Club Graphic 1", imageUrl: "/Portfolio Images/1.png" },
+      { title: "Club Graphic 2", imageUrl: "/Portfolio Images/2.png" },
+      { title: "Club Graphic 3", imageUrl: "/Portfolio Images/3.png" },
+      { title: "Club Graphic 4", imageUrl: "/Portfolio Images/4.png" },
+      { title: "Project Graphic 49", imageUrl: "/Portfolio Images/49.png" },
       { title: "Aviation & Aerospace Flyer", imageUrl: "/Portfolio Images/Aviation & Areospace SHSM Flyer.png" },
       { title: "Wolfhacks 26 Banner", imageUrl: "/Portfolio Images/updated wolhacks 26 banner .png" },
       { title: "EHS Flyer", imageUrl: "/Portfolio Images/EHS Flyer_ R.E.M.png" },
@@ -158,6 +163,12 @@ async function seedDatabase() {
       { title: "GSS Posts", imageUrl: "/Portfolio Images/GSS Posts (3).png" },
       { title: "Restaurant Menu", imageUrl: "/Portfolio Images/Restarunt Menu - Buisness.png" },
       { title: "Career Assignment", imageUrl: "/Portfolio Images/Career Assignment - Comp Eng.png" },
+      { title: "Scitech Activity Committee", imageUrl: "/Portfolio Images/Scitech Activity Committee.png" },
+      { title: "SHSM Flyer", imageUrl: "/Portfolio Images/SHSM Flyer_ R.E.M.png" },
+      { title: "STAC Sponsorship", imageUrl: "/Portfolio Images/STAC Sponsorship & Donation Package (Final Copy).png" },
+      { title: "Wolfhacks Graphic", imageUrl: "/Portfolio Images/WOlfhacks (1).png" },
+      { title: "Final Graphic", imageUrl: "/Portfolio Images/FINAL.png" },
+      { title: "Transformed Graphic", imageUrl: "/Portfolio Images/wmremove-transformed (1).png" },
     ];
 
     for (const item of marketingItems) {
