@@ -47,20 +47,20 @@ async function seedDatabase() {
   const clubs = await storage.getClubs();
   if (clubs.length === 0) {
     await storage.createClub({
-      name: "Brampton FBLC, JEC & TA",
+      name: "Brampton FBLC, TA & JEC",
       role: "Deputy Director of Marketing Department",
       description: "As Deputy Director of Marketing, I assumed a leadership role in overseeing and supporting the marketing team while working closely with executive leadership to drive organizational goals. I contributed to the development and execution of marketing strategies for large-scale events and initiatives, ensuring alignment with the organization’s mission and brand identity. I guided team members by delegating responsibilities, reviewing deliverables, and providing feedback to maintain high standards of quality and consistency. Additionally, I supported strategic planning, evaluated campaign effectiveness, and helped improve engagement through targeted, data-informed marketing approaches, strengthening both team performance and organizational visibility.",
       category: "main",
-      images: ["https://images.unsplash.com/photo-1517245386807-bb43f82c33c4"],
+      images: ["/Portfolio Images/1.png", "/Portfolio Images/2.png"],
       link: "#"
     });
     
     await storage.createClub({
       name: "Chinguacousy Robotics",
-      role: "Buisness Co-Lead & Social Media Coordinator",
+      role: "Business Co-Lead & Social Media Coordinator",
       description: "As the Business Co-Lead & Head Social Media Manager for Chinguacousy Robotics, I managed and represented the team at competitions while leading community outreach events like Grade 9 Orientation and the SciTech Open House, effectively engaging students and sponsors. I spearheaded social media initiatives, boosting community engagement across multiple platforms, and designed marketing materials, including posters, brochures, banners, and presentations, to enhance the team’s outreach both online and in person. As the lead photographer and videographer, I oversaw media production to ensure professional documentation of competitions and events. Additionally, I directed a media team, managing logistics and coverage to create compelling promotional content. I also led scouting efforts at FRC competitions, gathering key intelligence on competitors to refine team strategies, and secured sponsorships to fund robot development, club initiatives, and competition participation. Additionally, we won the 2025 REEFSCAPE FIRST Team Spirit Award at the Ontario District Humber College Polytechnic Event.",
       category: "main",
-      images: ["https://images.unsplash.com/photo-1485827404703-89b55fcc595e"],
+      images: ["/Portfolio Images/3.png", "/Portfolio Images/4.png"],
       link: "#"
     });
     
@@ -69,7 +69,7 @@ async function seedDatabase() {
       role: "Marketing & PR Director",
       description: "Over my tenure with the SciTech Activity Committee, I contributed to shaping and promoting innovative, engaging experiences for the school community. Starting as a Research & Development Officer, I designed technical challenges, planned major events such as SteamWorks, WolfHacks, and the SciTech Open House, and captured high-quality photography and videography to showcase these initiatives. I then advanced to Marketing & Public Relations Officer, leading content creation across social media, presentations, and promotional campaigns that generated over 75,000 views and significantly increased engagement and event turnout. Most recently, as Director of Marketing & Public Relations, I oversaw the Marketing & PR team, developed strategic campaigns, coordinated with event leads, and ensured consistent branding and messaging across all initiatives. Throughout my time with STAC, I combined creativity, leadership, and technical expertise to enhance event visibility, strengthen community engagement, and leave a lasting impact on the organization.",
       category: "main",
-      images: ["https://images.unsplash.com/photo-1531482615713-2afd69097998"],
+      images: ["/Portfolio Images/Scitech Activity Committee.png", "/Portfolio Images/STAC Sponsorship & Donation Package (Final Copy).png"],
       link: "#"
     });
     
@@ -78,7 +78,7 @@ async function seedDatabase() {
       role: "Director of Communications",
       description: "As Director of Communications at Superposition Toronto, I lead the organization’s external and internal communications strategy, overseeing brand voice, digital presence, and public-facing initiatives. I design and manage social media and promotional content, ensuring consistent, high-quality visuals and messaging across platforms. In addition, I host and lead bi-weekly communications meetings to plan content, align team goals, and coordinate upcoming campaigns and events. Through strategic storytelling, visual design, and cross-team collaboration, I work to increase engagement, strengthen brand identity, and effectively connect Superposition Toronto with its community and stakeholders.",
       category: "main",
-      images: ["https://images.unsplash.com/photo-1540575467063-178a50c2df87"],
+      images: ["/Portfolio Images/49.png"],
       link: "#"
     });
     
@@ -149,13 +149,23 @@ async function seedDatabase() {
 
   const marketing = await storage.getMarketingWork();
   if (marketing.length === 0) {
-    // Add some placeholder marketing items
-    for (let i = 1; i <= 6; i++) {
+    const marketingItems = [
+      { title: "Aviation & Aerospace Flyer", imageUrl: "/Portfolio Images/Aviation & Areospace SHSM Flyer.png" },
+      { title: "Wolfhacks 26 Banner", imageUrl: "/Portfolio Images/updated wolhacks 26 banner .png" },
+      { title: "EHS Flyer", imageUrl: "/Portfolio Images/EHS Flyer_ R.E.M.png" },
+      { title: "STEM Expo", imageUrl: "/Portfolio Images/STEM University Expo 5.o.png" },
+      { title: "Wolfhacks Final Poster", imageUrl: "/Portfolio Images/wolfhacks final poster.png" },
+      { title: "GSS Posts", imageUrl: "/Portfolio Images/GSS Posts (3).png" },
+      { title: "Restaurant Menu", imageUrl: "/Portfolio Images/Restarunt Menu - Buisness.png" },
+      { title: "Career Assignment", imageUrl: "/Portfolio Images/Career Assignment - Comp Eng.png" },
+    ];
+
+    for (const item of marketingItems) {
       await storage.createMarketingWork({
-        title: `Marketing Campaign ${i}`,
-        description: "Social media graphics and branding materials.",
-        imageUrl: "#",
-        category: "Social Media"
+        title: item.title,
+        description: "Visual design and marketing asset.",
+        imageUrl: item.imageUrl,
+        category: "Marketing"
       });
     }
   }

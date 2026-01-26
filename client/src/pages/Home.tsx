@@ -20,12 +20,9 @@ export default function Home() {
             {/* Placeholder for cutout image - in real use, this would be an <img> with object-cover */}
             <div className="w-full h-full flex items-center justify-center bg-gradient-to-b from-transparent to-black/40">
               <img
-                src="/Portfolio Images/download.png"
+                src="/Portfolio Images/wmremove-transformed (1).png"
                 alt="Jenisha Patel"
-                quality={100}          // sets highest quality
-                priority={true}        // loads image faster
-                className="object-cover rounded-3xl"
-                fill 
+                className="object-cover rounded-3xl w-full h-full"
               />
 
             </div>
