@@ -51,7 +51,11 @@ async function seedDatabase() {
       role: "Deputy Director of Marketing Department",
       description: "As Deputy Director of Marketing, I assumed a leadership role in overseeing and supporting the marketing team while working closely with executive leadership to drive organizational goals. I contributed to the development and execution of marketing strategies for large-scale events and initiatives, ensuring alignment with the organization’s mission and brand identity. I guided team members by delegating responsibilities, reviewing deliverables, and providing feedback to maintain high standards of quality and consistency. Additionally, I supported strategic planning, evaluated campaign effectiveness, and helped improve engagement through targeted, data-informed marketing approaches, strengthening both team performance and organizational visibility.",
       category: "main",
-      images: [],
+      images: [
+        "/Images/21ba3e6b-87b2-4bff-83f6-cd7ca5067873.jpg",
+        "/Images/DSCN5403.JPG",
+        "/Images/DSCN5419.JPG"
+      ],
       link: "#"
     });
     
@@ -60,7 +64,14 @@ async function seedDatabase() {
       role: "Business Co-Lead & Social Media Coordinator",
       description: "As the Business Co-Lead & Head Social Media Manager for Chinguacousy Robotics, I managed and represented the team at competitions while leading community outreach events like Grade 9 Orientation and the SciTech Open House, effectively engaging students and sponsors. I spearheaded social media initiatives, boosting community engagement across multiple platforms, and designed marketing materials, including posters, brochures, banners, and presentations, to enhance the team’s outreach both online and in person. As the lead photographer and videographer, I oversaw media production to ensure professional documentation of competitions and events. Additionally, I directed a media team, managing logistics and coverage to create compelling promotional content. I also led scouting efforts at FRC competitions, gathering key intelligence on competitors to refine team strategies, and secured sponsorships to fund robot development, club initiatives, and competition participation. Additionally, we won the 2025 REEFSCAPE FIRST Team Spirit Award at the Ontario District Humber College Polytechnic Event.",
       category: "main",
-      images: [],
+      images: [
+        "/Images/E2F61FDF-61F1-4D26-A465-FDF088F91887_L0_001-2025-10-21, 8_45_13 AM.jpg",
+        "/Images/6A527F9C-A139-46FF-81CD-AFF4EBC967A7_L0_001-2025-10-14, 8_24_36 PM.jpg",
+        "/Images/image (2).png",
+        "/Images/WhatsApp Image 2025-05-16 at 09.31.12_8886e90a.jpg",
+        "/Images/61AE39F4-B98C-4EA5-9C94-7402B04B37E7_L0_001-2025-10-28, 8_58_19 PM.jpg",
+        "/Images/E399BB19-5D2D-4697-833C-DAFC5E984A8F_L0_001-2025-10-23, 1_40_34 AM.jpg"
+      ],
       link: "#"
     });
     
@@ -69,7 +80,13 @@ async function seedDatabase() {
       role: "Marketing & PR Director",
       description: "Over my tenure with the SciTech Activity Committee, I contributed to shaping and promoting innovative, engaging experiences for the school community. Starting as a Research & Development Officer, I designed technical challenges, planned major events such as SteamWorks, WolfHacks, and the SciTech Open House, and captured high-quality photography and videography to showcase these initiatives. I then advanced to Marketing & Public Relations Officer, leading content creation across social media, presentations, and promotional campaigns that generated over 75,000 views and significantly increased engagement and event turnout. Most recently, as Director of Marketing & Public Relations, I oversaw the Marketing & PR team, developed strategic campaigns, coordinated with event leads, and ensured consistent branding and messaging across all initiatives. Throughout my time with STAC, I combined creativity, leadership, and technical expertise to enhance event visibility, strengthen community engagement, and leave a lasting impact on the organization.",
       category: "main",
-      images: [],
+      images: [
+          "/Images/image (4).png",
+          "/Images/unnamed.jpg",
+          "/Images/IMG_0166.JPG",
+          "/Images/933F8B30-C37F-42B1-87E2-EAB23989B6F0_L0_001-2025-10-21, 1_49_04 AM.jpg",
+          "/Images/image (3).png"
+        ],
       link: "#"
     });
     
@@ -87,7 +104,10 @@ async function seedDatabase() {
       role: "Videographer",
       description: "As a Videographer for the Chinguacousy Student Activity Council, I played a key role in organizing major student events, including Grade 9 Orientation and Semi-Formal, ensuring seamless execution and engagement. I created eye-catching promotional materials, such as social media content, presentations, and flyers, helping to boost event awareness and attract around 400 attendees. Leading a media team, I captured high-quality event photography and videography for promotional and archival purposes. Additionally, I assisted in troubleshooting technical and logistical challenges to ensure smooth event operations.",
       category: "other",
-      images: [],
+      images: [
+        "/Images/WhatsApp Image 2025-05-16 at 14.10.43_e77f212a.jpg",
+        "/Images/E284159A-AAA0-4050-99ED-DCBA73F89D98_L0_001-2025-01-01, 1_37_50 AM.jpg"
+      ],
       link: "#"
     });
 
