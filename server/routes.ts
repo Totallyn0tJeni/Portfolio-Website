@@ -194,20 +194,16 @@ async function seedDatabase() {
         title: "Marketing Campaign - Jamnshimi", 
         imageUrl: "/Portfolio Images/1.png",
         carouselImages: ["/Portfolio Images/1.png", "/Portfolio Images/2.png", "/Portfolio Images/3.png"],
-        description: "A series of social media posts for Jamnshimi outreach."
+        description: "A series of social media posts for the Hindu Festival Jamnshimi."
       },
       { 
         title: "Ambassador Applications", 
         imageUrl: "/Portfolio Images/4.png",
-        carouselImages: ["/Portfolio Images/4.png", "/Portfolio Images/49.png"],
+        carouselImages: ["/Portfolio Images/FINAL.png" ]
         description: "Visual assets for recruitment of student ambassadors."
       },
-      { 
-        title: "Data Analyst Role Promotion", 
-        imageUrl: "/Portfolio Images/Aviation & Areospace SHSM Flyer.png",
-        carouselImages: ["/Portfolio Images/Aviation & Areospace SHSM Flyer.png", "/Portfolio Images/updated wolhacks 26 banner .png"],
-        description: "Promotional graphics for data analyst positions and SHSM programs."
-      },
+      { title: "Aviation & Aerospace Flyer", imageUrl: "/Portfolio Images/Aviation & Areospace SHSM Flyer.png" },
+      { title: "Wolfhacks 26 Banner", imageUrl: "/Portfolio Images/updated wolhacks 26 banner .png" }
       { title: "EHS Flyer", imageUrl: "/Portfolio Images/EHS Flyer_ R.E.M.png" },
       { title: "STEM Expo", imageUrl: "/Portfolio Images/STEM University Expo 5.o.png" },
       { title: "Wolfhacks Final Poster", imageUrl: "/Portfolio Images/wolfhacks final poster.png" },
