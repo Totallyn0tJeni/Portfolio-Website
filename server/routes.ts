@@ -3,6 +3,7 @@ import type { Server } from "http";
 import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
+import { insertTestimonialSchema } from "@shared/schema";
 
 export async function registerRoutes(
   httpServer: Server,
@@ -22,6 +23,25 @@ export async function registerRoutes(
   app.get(api.projects.list.path, async (req, res) => {
     const projects = await storage.getProjects();
     res.json(projects);
+  });
+
+  app.get("/api/testimonials", async (req, res) => {
+    const testimonials = await storage.getTestimonials();
+    res.json(testimonials);
+  });
+
+  app.post("/api/testimonials", async (req, res) => {
+    try {
+      const input = insertTestimonialSchema.parse(req.body);
+      const testimonial = await storage.createTestimonial(input);
+      res.status(201).json(testimonial);
+    } catch (err) {
+      if (err instanceof z.ZodError) {
+        res.status(400).json({ message: err.errors[0].message });
+        return;
+      }
+      throw err;
+    }
   });
 
   app.post(api.contact.create.path, async (req, res) => {
@@ -170,13 +190,24 @@ async function seedDatabase() {
   const marketing = await storage.getMarketingWork();
   if (marketing.length === 0) {
     const marketingItems = [
-      { title: "Club Graphic 1", imageUrl: "/Portfolio Images/1.png" },
-      { title: "Club Graphic 2", imageUrl: "/Portfolio Images/2.png" },
-      { title: "Club Graphic 3", imageUrl: "/Portfolio Images/3.png" },
-      { title: "Club Graphic 4", imageUrl: "/Portfolio Images/4.png" },
-      { title: "Project Graphic 49", imageUrl: "/Portfolio Images/49.png" },
-      { title: "Aviation & Aerospace Flyer", imageUrl: "/Portfolio Images/Aviation & Areospace SHSM Flyer.png" },
-      { title: "Wolfhacks 26 Banner", imageUrl: "/Portfolio Images/updated wolhacks 26 banner .png" },
+      { 
+        title: "Marketing Campaign - Jamnshimi", 
+        imageUrl: "/Portfolio Images/1.png",
+        carouselImages: ["/Portfolio Images/1.png", "/Portfolio Images/2.png", "/Portfolio Images/3.png"],
+        description: "A series of social media posts for Jamnshimi outreach."
+      },
+      { 
+        title: "Ambassador Applications", 
+        imageUrl: "/Portfolio Images/4.png",
+        carouselImages: ["/Portfolio Images/4.png", "/Portfolio Images/49.png"],
+        description: "Visual assets for recruitment of student ambassadors."
+      },
+      { 
+        title: "Data Analyst Role Promotion", 
+        imageUrl: "/Portfolio Images/Aviation & Areospace SHSM Flyer.png",
+        carouselImages: ["/Portfolio Images/Aviation & Areospace SHSM Flyer.png", "/Portfolio Images/updated wolhacks 26 banner .png"],
+        description: "Promotional graphics for data analyst positions and SHSM programs."
+      },
       { title: "EHS Flyer", imageUrl: "/Portfolio Images/EHS Flyer_ R.E.M.png" },
       { title: "STEM Expo", imageUrl: "/Portfolio Images/STEM University Expo 5.o.png" },
       { title: "Wolfhacks Final Poster", imageUrl: "/Portfolio Images/wolfhacks final poster.png" },
@@ -194,10 +225,25 @@ async function seedDatabase() {
     for (const item of marketingItems) {
       await storage.createMarketingWork({
         title: item.title,
-        description: "Visual design and marketing asset.",
+        description: item.description || "Visual design and marketing asset.",
         imageUrl: item.imageUrl,
+        carouselImages: item.carouselImages || [],
         category: "Marketing"
       });
     }
+  }
+
+  const testimonials = await storage.getTestimonials();
+  if (testimonials.length === 0) {
+    await storage.createTestimonial({
+      name: "Alex Thompson",
+      role: "Project Lead, TechCorp",
+      content: "Jenisha is an incredibly talented and dedicated individual. Her marketing strategies for our latest campaign were data-driven and highly effective.",
+    });
+    await storage.createTestimonial({
+      name: "Sarah Chen",
+      role: "Founder, InnovateNow",
+      content: "Working with Jenisha on our rebranding was a pleasure. She has a keen eye for design and a deep understanding of brand storytelling.",
+    });
   }
 }

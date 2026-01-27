@@ -1,7 +1,42 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { api, buildUrl } from "@shared/routes";
-import { type InsertMessage } from "@shared/schema";
+import { type InsertMessage, type InsertTestimonial, type Testimonial } from "@shared/schema";
 import { useToast } from "@/hooks/use-toast";
+
+export function useTestimonials() {
+  return useQuery<Testimonial[]>({
+    queryKey: ["/api/testimonials"],
+    queryFn: async () => {
+      const res = await fetch("/api/testimonials");
+      if (!res.ok) throw new Error("Failed to fetch testimonials");
+      return res.json();
+    },
+  });
+}
+
+export function useSubmitTestimonial() {
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: async (data: InsertTestimonial) => {
+      const res = await fetch("/api/testimonials", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error("Failed to submit testimonial");
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/testimonials"] });
+      toast({
+        title: "Testimonial Submitted",
+        description: "Thank you for your feedback!",
+      });
+    },
+  });
+}
 
 export function useClubs() {
   return useQuery({

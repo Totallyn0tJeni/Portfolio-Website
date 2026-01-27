@@ -1,13 +1,116 @@
 import { PageTransition } from "@/components/PageTransition";
-import { useSendMessage } from "@/hooks/use-portfolio";
+import { useSendMessage, useTestimonials, useSubmitTestimonial } from "@/hooks/use-portfolio";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { insertMessageSchema, type InsertMessage } from "@shared/schema";
+import { insertMessageSchema, insertTestimonialSchema, type InsertMessage, type InsertTestimonial } from "@shared/schema";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Send, Loader2, Mail, Github, Instagram, Linkedin, FileText } from "lucide-react";
+import { Send, Loader2, Mail, Github, Instagram, Linkedin, FileText, Quote, Star } from "lucide-react";
+import { motion } from "framer-motion";
+
+function TestimonialsSection() {
+  const { data: testimonials } = useTestimonials();
+  const submitTestimonial = useSubmitTestimonial();
+  
+  const form = useForm<InsertTestimonial>({
+    resolver: zodResolver(insertTestimonialSchema),
+    defaultValues: { name: "", role: "", content: "" }
+  });
+
+  const onSubmit = (data: InsertTestimonial) => {
+    submitTestimonial.mutate(data, {
+      onSuccess: () => form.reset()
+    });
+  };
+
+  return (
+    <div className="mt-20 space-y-12 pb-20">
+      <div className="text-center">
+        <h2 className="text-3xl lg:text-4xl font-display font-bold text-white mb-4">
+          Testimonials & <span className="text-gradient">Feedback</span>
+        </h2>
+        <p className="text-white/60 max-w-2xl mx-auto">
+          Hear from people I've worked with, or leave your own feedback below.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {testimonials?.map((t, idx) => (
+          <motion.div
+            key={t.id}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: idx * 0.1 }}
+            className="glass-panel p-6 rounded-2xl relative group"
+          >
+            <Quote className="absolute top-4 right-4 text-purple-500/20 w-8 h-8 group-hover:text-purple-500/40 transition-colors" />
+            <div className="space-y-4">
+              <p className="text-white/80 italic line-clamp-4">"{t.content}"</p>
+              <div>
+                <h4 className="text-white font-bold">{t.name}</h4>
+                <p className="text-purple-300 text-xs">{t.role}</p>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="max-w-xl mx-auto glass-panel p-8 rounded-3xl border-purple-500/20">
+        <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+          <Star className="text-yellow-400 w-5 h-5" fill="currentColor" />
+          Leave a Testimonial
+        </h3>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input placeholder="Your Name" {...field} className="bg-white/5 border-white/10 rounded-xl" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="role"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input placeholder="Your Role/Org" {...field} className="bg-white/5 border-white/10 rounded-xl" />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <FormField
+              control={form.control}
+              name="content"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Textarea placeholder="Your feedback..." {...field} className="bg-white/5 border-white/10 rounded-xl min-h-[100px] resize-none" />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit" disabled={submitTestimonial.isPending} className="w-full rounded-xl bg-purple-600 hover:bg-purple-700 text-white">
+              {submitTestimonial.isPending ? "Submitting..." : "Submit Testimonial"}
+            </Button>
+          </form>
+        </Form>
+      </div>
+    </div>
+  );
+}
 
 export default function Contact() {
   const sendMessage = useSendMessage();
@@ -151,12 +254,15 @@ export default function Contact() {
                   <>
                     Send Message <Send className="ml-2 h-5 w-5" />
                   </>
-                )}
+                )
+              }
               </Button>
             </form>
           </Form>
         </div>
       </div>
+      
+      <TestimonialsSection />
     </PageTransition>
   );
 }

@@ -16,8 +16,17 @@ export const marketingWork = pgTable("marketing_work", {
   id: serial("id").primaryKey(),
   title: text("title").notNull(),
   description: text("description").notNull(),
-  imageUrl: text("image_url").notNull(),
+  imageUrl: text("image_url").notNull(), // Main image or first image in carousel
+  carouselImages: text("carousel_images").array().default([]), // For carousels
   category: text("category"),
+});
+
+export const testimonials = pgTable("testimonials", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  role: text("role").notNull(),
+  content: text("content").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
 });
 
 export const projects = pgTable("projects", {
@@ -41,6 +50,7 @@ export const insertClubSchema = createInsertSchema(clubs);
 export const insertMarketingWorkSchema = createInsertSchema(marketingWork);
 export const insertProjectSchema = createInsertSchema(projects);
 export const insertMessageSchema = createInsertSchema(messages);
+export const insertTestimonialSchema = createInsertSchema(testimonials);
 
 export type Club = typeof clubs.$inferSelect;
 export type InsertClub = z.infer<typeof insertClubSchema>;
@@ -53,3 +63,6 @@ export type InsertProject = z.infer<typeof insertProjectSchema>;
 
 export type Message = typeof messages.$inferSelect;
 export type InsertMessage = z.infer<typeof insertMessageSchema>;
+
+export type Testimonial = typeof testimonials.$inferSelect;
+export type InsertTestimonial = z.infer<typeof insertTestimonialSchema>;

@@ -1,10 +1,11 @@
 import { db } from "./db";
 import {
-  clubs, marketingWork, projects, messages,
+  clubs, marketingWork, projects, messages, testimonials,
   type Club, type InsertClub,
   type MarketingWork, type InsertMarketingWork,
   type Project, type InsertProject,
-  type Message, type InsertMessage
+  type Message, type InsertMessage,
+  type Testimonial, type InsertTestimonial
 } from "@shared/schema";
 import { eq } from "drizzle-orm";
 
@@ -12,7 +13,9 @@ export interface IStorage {
   getClubs(): Promise<Club[]>;
   getMarketingWork(): Promise<MarketingWork[]>;
   getProjects(): Promise<Project[]>;
+  getTestimonials(): Promise<Testimonial[]>;
   createMessage(message: InsertMessage): Promise<Message>;
+  createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial>;
   
   // Seed methods
   createClub(club: InsertClub): Promise<Club>;
@@ -33,9 +36,18 @@ export class DatabaseStorage implements IStorage {
     return await db.select().from(projects);
   }
 
+  async getTestimonials(): Promise<Testimonial[]> {
+    return await db.select().from(testimonials);
+  }
+
   async createMessage(message: InsertMessage): Promise<Message> {
     const [newMessage] = await db.insert(messages).values(message).returning();
     return newMessage;
+  }
+
+  async createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial> {
+    const [newTestimonial] = await db.insert(testimonials).values(testimonial).returning();
+    return newTestimonial;
   }
 
   async createClub(club: InsertClub): Promise<Club> {
