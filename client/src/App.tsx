@@ -13,11 +13,6 @@ import ClubDetail from "./pages/ClubDetail";
 import Marketing from "./pages/Marketing";
 import Coding from "@/pages/Coding";
 import Contact from "@/pages/Contact";
-import Projects from "./pages/Projects";
-import ProjectDetails from "./pages/ProjectDetails";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import Photography from "./pages/Photography";
 
 import NotFound from "@/pages/not-found";
 
@@ -32,12 +27,6 @@ function Router() {
         <Route path="/coding" component={Coding} />
         <Route path="/contact" component={Contact} />
         
-        <Route path="/projects" component={Projects} />
-        <Route path="/projects/:id" component={ProjectDetails} />
-        <Route path="/blog" component={Blog} />
-        <Route path="/blog/:id" component={BlogPost} />
-        <Route path="/photography" component={Photography} />
-
         <Route component={NotFound} />
       </Switch>
     </AnimatePresence>
