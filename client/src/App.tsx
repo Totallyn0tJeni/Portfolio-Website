@@ -13,6 +13,7 @@ import ClubDetail from "./pages/ClubDetail";
 import Marketing from "./pages/Marketing";
 import Coding from "@/pages/Coding";
 import Contact from "@/pages/Contact";
+import Photography from "@/pages/Photography";
 
 import NotFound from "@/pages/not-found";
 
@@ -26,6 +27,7 @@ function Router() {
         <Route path="/marketing" component={Marketing} />
         <Route path="/coding" component={Coding} />
         <Route path="/contact" component={Contact} />
+        <Route path="/photography" component={Photography} />
         
         <Route component={NotFound} />
       </Switch>

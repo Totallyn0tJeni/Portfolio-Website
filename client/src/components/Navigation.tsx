@@ -1,12 +1,13 @@
 import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
-import { Home, Users, Palette, Code, Mail, Menu, X } from "lucide-react";
+import { Home, Users, Palette, Code, Camera, Mail, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const navItems = [
   { path: "/", label: "Home", icon: Home },
   { path: "/clubs", label: "Extracurriculars & Clubs", icon: Users },
   { path: "/marketing", label: "Marketing", icon: Palette },
+  { path: "/photography", label: "Photography", icon: Camera },
   { path: "/coding", label: "Coding", icon: Code },
   { path: "/contact", label: "Contact", icon: Mail },
 ];
