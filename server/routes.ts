@@ -199,11 +199,11 @@ async function seedDatabase() {
       { 
         title: "Ambassador Applications", 
         imageUrl: "/Portfolio Images/4.png",
-        carouselImages: ["/Portfolio Images/FINAL.png" ]
+        carouselImages: ["/Portfolio Images/FINAL.png" ],
         description: "Visual assets for recruitment of student ambassadors."
       },
       { title: "Aviation & Aerospace Flyer", imageUrl: "/Portfolio Images/Aviation & Areospace SHSM Flyer.png" },
-      { title: "Wolfhacks 26 Banner", imageUrl: "/Portfolio Images/updated wolhacks 26 banner .png" }
+      { title: "Wolfhacks 26 Banner", imageUrl: "/Portfolio Images/updated wolhacks 26 banner .png" },
       { title: "EHS Flyer", imageUrl: "/Portfolio Images/EHS Flyer_ R.E.M.png" },
       { title: "STEM Expo", imageUrl: "/Portfolio Images/STEM University Expo 5.o.png" },
       { title: "Wolfhacks Final Poster", imageUrl: "/Portfolio Images/wolfhacks final poster.png" },
