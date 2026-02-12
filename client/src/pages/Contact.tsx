@@ -2,29 +2,19 @@ import { PageTransition } from "@/components/PageTransition";
 import { useSendMessage, useTestimonials, useSubmitTestimonial } from "@/hooks/use-portfolio";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { insertMessageSchema, insertTestimonialSchema, type InsertMessage, type InsertTestimonial } from "@shared/schema";
+import { insertMessageSchema, type InsertMessage } from "@shared/schema";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Send, Loader2, Mail, Github, Instagram, Linkedin, FileText, Quote, Star } from "lucide-react";
+import { Send, Loader2, Mail, Github, Instagram, Linkedin, FileText, Quote, Star, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useState } from "react";
 
 function TestimonialsSection() {
   const { data: testimonials } = useTestimonials();
-  const submitTestimonial = useSubmitTestimonial();
   
-  const form = useForm<InsertTestimonial>({
-    resolver: zodResolver(insertTestimonialSchema),
-    defaultValues: { name: "", role: "", content: "" }
-  });
-
-  const onSubmit = (data: InsertTestimonial) => {
-    submitTestimonial.mutate(data, {
-      onSuccess: () => form.reset()
-    });
-  };
-
   return (
     <div className="mt-20 space-y-12 pb-20">
       <div className="text-center">
@@ -32,7 +22,7 @@ function TestimonialsSection() {
           Testimonials & <span className="text-gradient">Feedback</span>
         </h2>
         <p className="text-white/60 max-w-2xl mx-auto">
-          Hear from people I've worked with, or leave your own feedback below.
+          Hear from people I've worked with.
         </p>
       </div>
 
@@ -56,93 +46,60 @@ function TestimonialsSection() {
           </motion.div>
         ))}
       </div>
-
-      <div className="max-w-xl mx-auto glass-panel p-8 rounded-3xl border-purple-500/20">
-        <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-          <Star className="text-yellow-400 w-5 h-5" fill="currentColor" />
-          Leave a Testimonial
-        </h3>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input placeholder="Your Name" {...field} className="bg-white/5 border-white/10 rounded-xl" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="role"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input placeholder="Your Role/Org" {...field} className="bg-white/5 border-white/10 rounded-xl" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <FormField
-              control={form.control}
-              name="content"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Textarea placeholder="Your feedback..." {...field} className="bg-white/5 border-white/10 rounded-xl min-h-[100px] resize-none" />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit" disabled={submitTestimonial.isPending} className="w-full rounded-xl bg-purple-600 hover:bg-purple-700 text-white">
-              {submitTestimonial.isPending ? "Submitting..." : "Submit Testimonial"}
-            </Button>
-          </form>
-        </Form>
-      </div>
     </div>
   );
 }
 
 export default function Contact() {
   const sendMessage = useSendMessage();
+  const submitTestimonial = useSubmitTestimonial();
+  const [isTestimonial, setIsTestimonial] = useState(false);
   
-  const form = useForm<InsertMessage>({
-    resolver: zodResolver(insertMessageSchema),
+  const form = useForm({
+    resolver: zodResolver(insertMessageSchema.extend({
+      role: isTestimonial ? insertMessageSchema.shape.name : insertMessageSchema.shape.name.optional(),
+    })),
     defaultValues: {
       name: "",
       email: "",
-      message: ""
+      message: "",
+      role: ""
     }
   });
 
-  const onSubmit = (data: InsertMessage) => {
-    sendMessage.mutate(data, {
-      onSuccess: () => {
-        form.reset();
+  const onSubmit = async (data: any) => {
+    try {
+      if (isTestimonial) {
+        await submitTestimonial.mutateAsync({
+          name: data.name,
+          role: data.role || "Professional",
+          content: data.message
+        });
+      } else {
+        await sendMessage.mutateAsync({
+          name: data.name,
+          email: data.email,
+          message: data.message
+        });
       }
-    });
+      form.reset();
+      setIsTestimonial(false);
+    } catch (error) {
+      // Error handled by mutation hooks
+    }
   };
 
   return (
     <PageTransition>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[70vh]">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start min-h-[70vh]">
         {/* Contact Info Side */}
-        <div className="space-y-8">
+        <div className="space-y-8 lg:sticky lg:top-24">
           <div>
             <h1 className="text-4xl lg:text-5xl font-display font-bold text-white mb-6">
               Let's <span className="text-gradient">Connect</span>
             </h1>
             <p className="text-lg text-white/70 leading-relaxed">
-              Have a project in mind, a question about my work, or just want to chat? 
+              Have a project in mind, want to leave feedback, or just want to chat? 
               I'd love to hear from you.
             </p>
           </div>
@@ -178,60 +135,102 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Contact Form Side */}
+        {/* Combined Form Side */}
         <div className="glass-panel p-8 rounded-3xl relative overflow-hidden">
           <div className="absolute top-0 right-0 p-32 bg-purple-500/10 blur-[100px] rounded-full pointer-events-none -mr-16 -mt-16"></div>
           
-          <h2 className="text-2xl font-bold text-white mb-6 relative z-10">Send a Message</h2>
+          <div className="flex items-center justify-between mb-6 relative z-10">
+            <h2 className="text-2xl font-bold text-white">
+              {isTestimonial ? "Leave a Testimonial" : "Send a Message"}
+            </h2>
+            <div className="flex items-center gap-2 bg-white/5 p-1 px-3 rounded-full border border-white/10">
+              <Checkbox 
+                id="is-testimonial" 
+                checked={isTestimonial}
+                onCheckedChange={(checked) => setIsTestimonial(!!checked)}
+                className="border-white/20 data-[state=checked]:bg-purple-500 data-[state=checked]:border-purple-500"
+              />
+              <label 
+                htmlFor="is-testimonial" 
+                className="text-xs font-medium text-white/70 cursor-pointer select-none"
+              >
+                As Testimonial?
+              </label>
+            </div>
+          </div>
           
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 relative z-10">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-white/90">Name</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="Your name" 
-                        {...field} 
-                        className="bg-black/20 border-white/10 text-white placeholder:text-white/30 focus:border-purple-500/50 focus:ring-purple-500/20 h-12 rounded-xl"
-                      />
-                    </FormControl>
-                    <FormMessage className="text-red-300" />
-                  </FormItem>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-white/90">Name</FormLabel>
+                      <FormControl>
+                        <Input 
+                          placeholder="Your name" 
+                          {...field} 
+                          className="bg-black/20 border-white/10 text-white placeholder:text-white/30 focus:border-purple-500/50 focus:ring-purple-500/20 h-12 rounded-xl"
+                        />
+                      </FormControl>
+                      <FormMessage className="text-red-300" />
+                    </FormItem>
+                  )}
+                />
+                
+                {isTestimonial ? (
+                  <FormField
+                    control={form.control}
+                    name="role"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-white/90">Role/Organization</FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder="e.g. CEO at TechCorp" 
+                            {...field} 
+                            className="bg-black/20 border-white/10 text-white placeholder:text-white/30 focus:border-purple-500/50 focus:ring-purple-500/20 h-12 rounded-xl"
+                          />
+                        </FormControl>
+                        <FormMessage className="text-red-300" />
+                      </FormItem>
+                    )}
+                  />
+                ) : (
+                  <FormField
+                    control={form.control}
+                    name="email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-white/90">Email</FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder="your@email.com" 
+                            type="email"
+                            {...field} 
+                            className="bg-black/20 border-white/10 text-white placeholder:text-white/30 focus:border-purple-500/50 focus:ring-purple-500/20 h-12 rounded-xl"
+                          />
+                        </FormControl>
+                        <FormMessage className="text-red-300" />
+                      </FormItem>
+                    )}
+                  />
                 )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-white/90">Email</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="your@email.com" 
-                        type="email"
-                        {...field} 
-                        className="bg-black/20 border-white/10 text-white placeholder:text-white/30 focus:border-purple-500/50 focus:ring-purple-500/20 h-12 rounded-xl"
-                      />
-                    </FormControl>
-                    <FormMessage className="text-red-300" />
-                  </FormItem>
-                )}
-              />
+              </div>
               
               <FormField
                 control={form.control}
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-white/90">Message</FormLabel>
+                    <FormLabel className="text-white/90">
+                      {isTestimonial ? "Testimonial Content" : "Message"}
+                    </FormLabel>
                     <FormControl>
                       <Textarea 
-                        placeholder="Tell me about your project..." 
+                        placeholder={isTestimonial ? "Share your experience working with me..." : "Tell me about your project..."} 
                         {...field} 
                         className="bg-black/20 border-white/10 text-white placeholder:text-white/30 focus:border-purple-500/50 focus:ring-purple-500/20 min-h-[150px] rounded-xl resize-none"
                       />
@@ -243,22 +242,33 @@ export default function Contact() {
 
               <Button 
                 type="submit" 
-                disabled={sendMessage.isPending}
-                className="w-full h-12 rounded-xl bg-white text-black hover:bg-white/90 font-bold text-lg shadow-lg shadow-white/5"
+                disabled={sendMessage.isPending || submitTestimonial.isPending}
+                className="w-full h-12 rounded-xl bg-white text-black hover:bg-white/90 font-bold text-lg shadow-lg shadow-white/5 transition-all duration-300 active:scale-[0.98]"
               >
-                {sendMessage.isPending ? (
+                {sendMessage.isPending || submitTestimonial.isPending ? (
                   <>
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Sending...
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Submitting...
                   </>
                 ) : (
                   <>
-                    Send Message <Send className="ml-2 h-5 w-5" />
+                    {isTestimonial ? "Submit Testimonial" : "Send Message"} 
+                    {isTestimonial ? <Star className="ml-2 h-5 w-5 fill-current" /> : <Send className="ml-2 h-5 w-5" />}
                   </>
                 )
               }
               </Button>
             </form>
           </Form>
+
+          {isTestimonial && (
+            <motion.p 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center mt-4 text-xs text-purple-300/60 flex items-center justify-center gap-1"
+            >
+              <CheckCircle2 size={12} /> Your testimonial will be visible after submission
+            </motion.p>
+          )}
         </div>
       </div>
       
