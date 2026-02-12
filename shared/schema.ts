@@ -66,3 +66,15 @@ export type InsertMessage = z.infer<typeof insertMessageSchema>;
 
 export type Testimonial = typeof testimonials.$inferSelect;
 export type InsertTestimonial = z.infer<typeof insertTestimonialSchema>;
+
+export const blogPosts = pgTable("blog_posts", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  content: text("content").notNull(),
+  imageUrl: text("image_url"),
+  publishedAt: timestamp("published_at").defaultNow(),
+});
+
+export const insertBlogPostSchema = createInsertSchema(blogPosts);
+export type BlogPost = typeof blogPosts.$inferSelect;
+export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;

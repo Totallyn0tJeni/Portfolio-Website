@@ -58,6 +58,16 @@ export async function registerRoutes(
     }
   });
 
+  app.get("/api/blog", async (req, res) => {
+    const posts = await storage.getBlogPosts();
+    res.json(posts);
+  });
+
+  app.get("/api/blog/latest", async (req, res) => {
+    const post = await storage.getLatestBlogPost();
+    res.json(post || null);
+  });
+
   await seedDatabase();
 
   return httpServer;
@@ -240,6 +250,15 @@ async function seedDatabase() {
       name: "Sarah Chen",
       role: "Founder, InnovateNow",
       content: "Working with Jenisha on our rebranding was a pleasure. She has a keen eye for design and a deep understanding of brand storytelling.",
+    });
+  }
+
+  const blogPosts = await storage.getBlogPosts();
+  if (blogPosts.length === 0) {
+    await storage.createBlogPost({
+      title: "Welcome to My New Portfolio Update Section!",
+      content: "I've recently updated my portfolio to include this new blog and updates section. Here, I'll be sharing my latest projects, marketing insights, and personal updates on my journey in marketing and tech. Stay tuned for more content coming soon!",
+      imageUrl: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=800"
     });
   }
 }

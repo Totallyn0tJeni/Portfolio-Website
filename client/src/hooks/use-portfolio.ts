@@ -1,6 +1,28 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { api, buildUrl } from "@shared/routes";
-import { type InsertMessage, type InsertTestimonial, type Testimonial } from "@shared/schema";
+import { type InsertMessage, type InsertTestimonial, type Testimonial, type BlogPost } from "@shared/schema";
+
+export function useBlogPosts() {
+  return useQuery<BlogPost[]>({
+    queryKey: ["/api/blog"],
+    queryFn: async () => {
+      const res = await fetch("/api/blog");
+      if (!res.ok) throw new Error("Failed to fetch blog posts");
+      return res.json();
+    },
+  });
+}
+
+export function useLatestBlogPost() {
+  return useQuery<BlogPost | null>({
+    queryKey: ["/api/blog/latest"],
+    queryFn: async () => {
+      const res = await fetch("/api/blog/latest");
+      if (!res.ok) throw new Error("Failed to fetch latest blog post");
+      return res.json();
+    },
+  });
+}
 import { useToast } from "@/hooks/use-toast";
 
 export function useTestimonials() {
