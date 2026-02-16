@@ -25,7 +25,7 @@ export default function About() {
             <div className="space-y-4">
               <h2 className="text-2xl font-bold text-white">Experience</h2>
               <p className="text-white/80 leading-relaxed">
-                I have experience leading sponsorship outreach, developing marketing campaigns, directing visual media, and managing projects while mentoring peers and fostering collaboration. I also help organize and promote student-led hackathons, contributing to challenge design, event logistics, and outreach.
+                I have experience leading sponsorship outreach, developing marketing campaigns, directing visual media, and managing projects while mentoring peers and fostering collaboration. I also help organize and promote student-led hackathons, contributing to challenge design, event logistics, and outreach. My love for graphic design and visual storytelling shows through in promotional content, photography, and videography.
               </p>
             </div>
             <div className="space-y-4">
