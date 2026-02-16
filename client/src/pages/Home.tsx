@@ -1,60 +1,108 @@
 import { PageTransition } from "@/components/PageTransition";
-import { Github, Twitter, Linkedin, Mail, FileText, ArrowRight, Calendar } from "lucide-react";
+import { Github, Twitter, Linkedin, Mail, FileText, ArrowRight, Calendar, MapPin, Briefcase } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLatestBlogPost } from "@/hooks/use-portfolio";
 import { format } from "date-fns";
 import { Link } from "wouter";
+import heroImage from "@assets/IMG_8076_1771273839233.jpeg";
 
 export default function Home() {
   const { data: latestPost } = useLatestBlogPost();
 
   return (
-    <PageTransition className="flex flex-col items-center justify-center min-h-[80vh] gap-12 px-6 py-20">
-      <div className="flex flex-col lg:flex-row items-center justify-center gap-12 w-full max-w-7xl">
-        {/* Cutout Image Section */}
-        <motion.div 
-          initial={{ x: -50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ delay: 0.1 }}
-          className="relative group lg:w-1/2 flex justify-center lg:justify-end"
-        >
-          <div className="relative w-64 h-96 md:w-80 md:h-[450px] lg:w-[450px] lg:h-[600px] animate-float">
-            {/* Glass background for the "cutout" effect container */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 to-pink-500/10 rounded-3xl blur-2xl -z-10"></div>
-            <div className="relative w-full h-full rounded-3xl overflow-hidden border border-white/10 backdrop-blur-sm bg-white/5 shadow-2xl">
-              {/* Placeholder for cutout image - in real use, this would be an <img> with object-cover */}
-              <div className="w-full h-full flex items-center justify-center bg-gradient-to-b from-transparent to-black/40">
-                <img
-                  src="/Portfolio Images/download.png"
-                  alt="Jenisha Patel"
-                  className="object-cover rounded-3xl w-full h-full"
-                />
-
-              </div>
+    <PageTransition className="flex flex-col items-center min-h-screen px-6 pt-32 pb-20">
+      <div className="flex flex-col lg:flex-row items-center justify-between gap-12 w-full max-w-7xl relative">
+        {/* Intro Text */}
+        <div className="lg:w-1/2 text-left space-y-8 z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="space-y-6"
+          >
+            <div className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-white/60">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block mr-2 animate-pulse"></span>
+              Available for freelance work
             </div>
             
-            {/* Decorative floating elements */}
-            <div className="absolute -top-4 -right-4 w-12 h-12 bg-purple-500/30 rounded-full blur-xl animate-pulse"></div>
-            <div className="absolute -bottom-8 -left-8 w-16 h-16 bg-pink-500/20 rounded-full blur-xl animate-pulse delay-700"></div>
-          </div>
-        </motion.div>
-
-        {/* Intro Text */}
-        <div className="lg:w-1/2 text-left space-y-6">
-          <div className="glass-panel p-8 md:p-10 rounded-3xl backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl relative overflow-hidden group">
-            <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-purple-500 to-pink-500 opacity-50"></div>
-            
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-display font-bold mb-4 tracking-tight">
-              Hi, I'm <br/><span className="text-gradient">Jenisha Patel</span>
+            <h1 className="text-5xl md:text-6xl lg:text-8xl font-display font-bold leading-tight">
+              Hi, I'm <br/>
+              <span className="text-white">Jenisha</span>
             </h1>
-            <p className="text-lg md:text-xl text-white/80 leading-relaxed font-light">
-              I’m a passionate and driven student in the Sci-Tech Regional Program at Chinguacousy Secondary School, with a strong foundation in STEM, leadership, and digital creativity. I enjoy exploring new technologies, solving challenges, and using my skills to create meaningful impact in my school and community.
-              <br /><br />
-              I have experience leading sponsorship outreach, developing marketing campaigns, directing visual media, and managing projects while mentoring peers and fostering collaboration. I also help organize and promote student-led hackathons, contributing to challenge design, event logistics, and outreach. My love for graphic design and visual storytelling shows through in promotional content, photography, and videography.
+            
+            <h2 className="text-2xl md:text-3xl text-purple-400 font-medium">
+              Frontend Developer
+            </h2>
+
+            <p className="text-lg text-white/60 max-w-lg leading-relaxed">
+              I create beautiful, functional, and user-centered digital experiences. With 
+              passion for technology and design, I bring ideas to life through 
+              clean code and thoughtful design.
             </p>
 
-          </div>
+            <div className="flex flex-wrap items-center gap-6 text-white/50 text-sm">
+              <div className="flex items-center gap-2">
+                <MapPin size={16} className="text-purple-500" />
+                Based in Ontario
+              </div>
+              <div className="flex items-center gap-2">
+                <Briefcase size={16} className="text-purple-500" />
+                Available Now
+              </div>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-4">
+              <Link href="/contact">
+                <button className="px-8 py-3 rounded-full bg-white text-black font-bold flex items-center gap-2 hover:bg-white/90 transition-all">
+                  Hire Me <ArrowRight size={18} />
+                </button>
+              </Link>
+              <a href="/attached_assets/Jenisha_Patel_-_Resume_2026_V1_1769299476670.pdf" target="_blank">
+                <button className="px-8 py-3 rounded-full bg-white/5 border border-white/10 text-white font-bold flex items-center gap-2 hover:bg-white/10 transition-all">
+                  Download CV <FileText size={18} />
+                </button>
+              </a>
+            </div>
+
+            <div className="flex items-center gap-6 pt-4">
+              <span className="text-sm text-white/40 font-medium uppercase tracking-wider">Follow me:</span>
+              <div className="flex items-center gap-4">
+                <a href="https://github.com/Totallyn0tJeni" target="_blank" className="text-white/60 hover:text-white transition-colors">
+                  <Github size={20} />
+                </a>
+                <a href="https://linkedin.com/in/jenisha-patel18" target="_blank" className="text-white/60 hover:text-white transition-colors">
+                  <Linkedin size={20} />
+                </a>
+                <a href="https://instagram.com/jenisha_ptl08" target="_blank" className="text-white/60 hover:text-white transition-colors">
+                  <Github size={20} /> {/* Using Github as placeholder for Discord/other if needed */}
+                </a>
+                <a href="https://instagram.com/jenisha_ptl08" target="_blank" className="text-white/60 hover:text-white transition-colors">
+                  <Github size={20} /> {/* Instagram icon would be better but keeping simple for now */}
+                </a>
+              </div>
+            </div>
+          </motion.div>
         </div>
+
+        {/* Hero Image Section */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="lg:w-1/2 relative"
+        >
+          <div className="relative z-10 w-full max-w-[500px] mx-auto aspect-square rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+            <img
+              src={heroImage}
+              alt="Jenisha Patel"
+              className="w-full h-full object-cover"
+            />
+            {/* Visual elements from reference image could be added here if needed */}
+          </div>
+          
+          {/* Background Glow */}
+          <div className="absolute -inset-4 bg-purple-500/20 blur-3xl -z-10 rounded-full"></div>
+        </motion.div>
       </div>
 
       {/* Latest Blog Post Section */}
@@ -63,9 +111,9 @@ export default function Home() {
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          className="w-full max-w-4xl mt-12"
+          className="w-full max-w-4xl mt-32"
         >
-          <div className="text-center mb-8">
+          <div className="text-center mb-12">
             <h2 className="text-3xl font-display font-bold text-white mb-2">Latest <span className="text-gradient">Update</span></h2>
             <div className="h-1 w-20 bg-purple-500 mx-auto rounded-full"></div>
           </div>

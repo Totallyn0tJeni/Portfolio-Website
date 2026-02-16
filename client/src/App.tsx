@@ -8,6 +8,7 @@ import { AnimatePresence } from "framer-motion";
 
 // Pages
 import Home from "@/pages/Home";
+import About from "@/pages/About";
 import Blog from "./pages/Blog";
 import Clubs from "./pages/Clubs";
 import ClubDetail from "./pages/ClubDetail";
@@ -23,6 +24,7 @@ function Router() {
     <AnimatePresence mode="wait">
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/about" component={About} />
         <Route path="/blog" component={Blog} />
         <Route path="/clubs" component={Clubs} />
         <Route path="/clubs/:id" component={ClubDetail} />
