@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Navigation } from "@/components/Navigation";
 import { AnimatePresence } from "framer-motion";
+import { ThemeProvider } from "@/hooks/use-theme";
 
 // Pages
 import Home from "@/pages/Home";
@@ -39,11 +40,12 @@ function Router() {
   );
 }
 
-function App() {
+export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <div className="min-h-screen text-white overflow-x-hidden">
+      <ThemeProvider>
+        <TooltipProvider>
+          <div className="min-h-screen text-white overflow-x-hidden">
           {/* Background Ambient Orbs */}
           <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
             <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-purple-800/20 rounded-full blur-[120px] animate-pulse"></div>
@@ -55,8 +57,7 @@ function App() {
           <Toaster />
         </div>
       </TooltipProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
-
-export default App;
