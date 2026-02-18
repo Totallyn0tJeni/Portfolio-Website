@@ -18,11 +18,11 @@ const navItems = [
 ];
 
 const colors = [
-  { name: "Purple (Default)", value: "262 83% 58%" },
-  { name: "Blue", value: "221 83% 53%" },
-  { name: "Rose", value: "346 84% 61%" },
-  { name: "Emerald", value: "142 71% 45%" },
-  { name: "Amber", value: "38 92% 50%" },
+  { name: "Purple (Default)", primary: "262 83% 58%", accent: "310 70% 65%" },
+  { name: "Blue", primary: "221 83% 53%", accent: "199 89% 48%" },
+  { name: "Rose", primary: "346 84% 61%", accent: "354 70% 54%" },
+  { name: "Emerald", primary: "142 71% 45%", accent: "160 84% 39%" },
+  { name: "Amber", primary: "38 92% 50%", accent: "48 96% 53%" },
 ];
 
 export function Navigation() {
@@ -69,12 +69,12 @@ export function Navigation() {
                   <div className="grid grid-cols-5 gap-2">
                     {colors.map((color) => (
                       <button
-                        key={color.value}
-                        onClick={() => setTheme({ primary: color.value })}
+                        key={color.primary}
+                        onClick={() => setTheme({ primary: color.primary, accent: color.accent })}
                         className={`w-8 h-8 rounded-full border-2 transition-transform hover:scale-110 ${
-                          theme.primary === color.value ? "border-white scale-110" : "border-transparent"
+                          theme.primary === color.primary ? "border-white scale-110" : "border-transparent"
                         }`}
-                        style={{ backgroundColor: `hsl(${color.value})` }}
+                        style={{ backgroundColor: `hsl(${color.primary})` }}
                         title={color.name}
                       />
                     ))}

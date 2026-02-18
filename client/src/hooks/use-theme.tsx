@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 
 type Theme = {
   primary: string;
+  accent: string;
 };
 
 type ThemeContextType = {
@@ -14,13 +15,16 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(() => {
     const saved = localStorage.getItem("portfolio-theme");
-    return saved ? JSON.parse(saved) : { primary: "262 83% 58%" }; // Default light purple
+    return saved ? JSON.parse(saved) : { 
+      primary: "262 83% 58%", // Light Purple
+      accent: "310 70% 65%"   // Soft Pink
+    };
   });
 
   useEffect(() => {
     localStorage.setItem("portfolio-theme", JSON.stringify(theme));
-    document.documentElement.style.setProperty("--primary", theme.primary);
-    // Also update ring color to match primary
+    document.documentElement.style.setProperty("--theme-primary", theme.primary);
+    document.documentElement.style.setProperty("--theme-accent", theme.accent);
     document.documentElement.style.setProperty("--ring", theme.primary);
   }, [theme]);
 
