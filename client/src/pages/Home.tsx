@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useLatestBlogPost } from "@/hooks/use-portfolio";
 import { format } from "date-fns";
 import { Link } from "wouter";
-import heroImage from "@assets/download.png";
+import heroImage from "@assets/IMG_8076_1771273839233.jpeg";
 
 export default function Home() {
   const { data: latestPost } = useLatestBlogPost();
