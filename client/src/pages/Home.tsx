@@ -32,7 +32,7 @@ export default function Home() {
               </Link>
             </h1>
             
-            <h2 className="text-2xl md:text-3xl text-purple-400 font-medium">
+            <h2 className="text-2xl md:text-3xl text-primary font-medium">
               Frontend Developer
             </h2>
 
@@ -44,11 +44,11 @@ export default function Home() {
 
             <div className="flex flex-wrap items-center gap-6 text-white/50 text-sm">
               <div className="flex items-center gap-2">
-                <MapPin size={16} className="text-purple-500" />
+                <MapPin size={16} className="text-primary" />
                 Based in Ontario
               </div>
               <div className="flex items-center gap-2">
-                <Briefcase size={16} className="text-purple-500" />
+                <Briefcase size={16} className="text-primary" />
                 Available Now
               </div>
             </div>
@@ -105,7 +105,7 @@ export default function Home() {
           </div>
           
           {/* Background Glow */}
-          <div className="absolute -inset-4 bg-purple-500/20 blur-3xl -z-10 rounded-full"></div>
+          <div className="absolute -inset-4 bg-primary/20 blur-3xl -z-10 rounded-full"></div>
         </motion.div>
       </div>
 
@@ -119,11 +119,11 @@ export default function Home() {
         >
           <div className="text-center mb-12">
             <h2 className="text-3xl font-display font-bold text-white mb-2">Latest <span className="text-gradient">Update</span></h2>
-            <div className="h-1 w-20 bg-purple-500 mx-auto rounded-full"></div>
+            <div className="h-1 w-20 bg-primary mx-auto rounded-full"></div>
           </div>
           
           <Link href="/blog">
-            <div className="glass-panel group p-6 rounded-3xl border border-white/10 hover:border-purple-500/30 transition-all duration-500 cursor-pointer">
+            <div className="glass-panel group p-6 rounded-3xl border border-white/10 hover:border-primary/30 transition-all duration-500 cursor-pointer">
               <div className="flex flex-col md:flex-row gap-8">
                 {latestPost.imageUrl && (
                   <div className="md:w-1/3 h-48 rounded-2xl overflow-hidden">
@@ -135,17 +135,17 @@ export default function Home() {
                   </div>
                 )}
                 <div className="flex-1 space-y-4">
-                  <div className="flex items-center gap-2 text-xs font-medium text-purple-400">
+                  <div className="flex items-center gap-2 text-xs font-medium text-primary">
                     <Calendar size={14} />
                     {latestPost.publishedAt && format(new Date(latestPost.publishedAt), 'MMMM d, yyyy')}
                   </div>
-                  <h3 className="text-2xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                  <h3 className="text-2xl font-bold text-white group-hover:text-primary transition-colors">
                     {latestPost.title}
                   </h3>
                   <p className="text-white/70 leading-relaxed line-clamp-2">
                     {latestPost.content}
                   </p>
-                  <div className="flex items-center gap-2 text-purple-400 font-medium group-hover:gap-3 transition-all">
+                  <div className="flex items-center gap-2 text-primary font-medium group-hover:gap-3 transition-all">
                     Read Post History <ArrowRight size={16} />
                   </div>
                 </div>
