@@ -34,7 +34,10 @@ export function Navigation() {
     <nav className="fixed top-0 left-0 right-0 z-50 px-4 py-4">
       <div className="max-w-7xl mx-auto flex items-center justify-center relative">
         {/* Desktop Nav */}
-        <div className="hidden md:flex justify-center">
+        <div className="hidden md:flex justify-center items-center gap-6">
+          <Link href="/">
+            <span className="font-display font-bold text-2xl text-white cursor-pointer hover:text-[hsl(var(--theme-primary))] transition-colors">Jenisha</span>
+          </Link>
           <div className="glass-panel rounded-full px-2 py-2 flex items-center gap-1">
             {navItems.map((item) => {
               const isActive = location === item.path;
@@ -86,8 +89,10 @@ export function Navigation() {
         </div>
 
         {/* Mobile Nav Toggle */}
-        <div className="md:hidden flex justify-between items-center glass-panel px-4 py-3 rounded-xl">
-          <span className="font-display font-bold text-xl text-white">Portfolio</span>
+        <div className="md:hidden flex justify-between items-center glass-panel px-4 py-3 rounded-xl w-full">
+          <Link href="/">
+            <span className="font-display font-bold text-xl text-white cursor-pointer hover:text-[hsl(var(--theme-primary))] transition-colors">Jenisha</span>
+          </Link>
           <button 
             onClick={() => setIsOpen(!isOpen)} 
             className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors"

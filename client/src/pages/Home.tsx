@@ -1,5 +1,5 @@
 import { PageTransition } from "@/components/PageTransition";
-import { Github, Twitter, Linkedin, Mail, FileText, ArrowRight, Calendar, MapPin, Briefcase } from "lucide-react";
+import { Github, Twitter, Linkedin, Mail, FileText, ArrowRight, Calendar, MapPin, Briefcase, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLatestBlogPost } from "@/hooks/use-portfolio";
 import { format } from "date-fns";
@@ -27,7 +27,9 @@ export default function Home() {
             
             <h1 className="text-5xl md:text-6xl lg:text-8xl font-display font-bold leading-tight">
               Hi, I'm <br/>
-              <span className="text-white">Jenisha</span>
+              <Link href="/">
+                <span className="text-white cursor-pointer hover:text-[hsl(var(--theme-primary))] transition-colors">Jenisha</span>
+              </Link>
             </h1>
             
             <h2 className="text-2xl md:text-3xl text-purple-400 font-medium">
