@@ -23,11 +23,15 @@ export interface IStorage {
   getBlogPosts(): Promise<BlogPost[]>;
   getLatestBlogPost(): Promise<BlogPost | undefined>;
   createMessage(message: InsertMessage): Promise<Message>;
+  getMessages(): Promise<Message[]>;
   createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial>;
   createBlogPost(post: InsertBlogPost): Promise<BlogPost>;
+  deleteBlogPost(id: number): Promise<void>;
   deleteBlogPostByTitle(title: string): Promise<void>;
   createClub(club: InsertClub): Promise<Club>;
+  deleteClub(id: number): Promise<void>;
   createProject(project: InsertProject): Promise<Project>;
+  deleteProject(id: number): Promise<void>;
 
   // Photo albums
   getPhotoAlbums(): Promise<PhotoAlbum[]>;
@@ -81,6 +85,10 @@ export class DatabaseStorage implements IStorage {
     return newMessage;
   }
 
+  async getMessages(): Promise<Message[]> {
+    return await db.select().from(messages).orderBy(desc(messages.createdAt));
+  }
+
   async createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial> {
     const [newTestimonial] = await db.insert(testimonials).values(testimonial).returning();
     return newTestimonial;
@@ -89,6 +97,10 @@ export class DatabaseStorage implements IStorage {
   async createBlogPost(post: InsertBlogPost): Promise<BlogPost> {
     const [newPost] = await db.insert(blogPosts).values(post).returning();
     return newPost;
+  }
+
+  async deleteBlogPost(id: number): Promise<void> {
+    await db.delete(blogPosts).where(eq(blogPosts.id, id));
   }
 
   async deleteBlogPostByTitle(title: string): Promise<void> {
@@ -100,9 +112,17 @@ export class DatabaseStorage implements IStorage {
     return newClub;
   }
 
+  async deleteClub(id: number): Promise<void> {
+    await db.delete(clubs).where(eq(clubs.id, id));
+  }
+
   async createProject(project: InsertProject): Promise<Project> {
     const [newProject] = await db.insert(projects).values(project).returning();
     return newProject;
+  }
+
+  async deleteProject(id: number): Promise<void> {
+    await db.delete(projects).where(eq(projects.id, id));
   }
 
   async getPhotoAlbums(): Promise<PhotoAlbum[]> {

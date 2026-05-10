@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { api, buildUrl } from "@shared/routes";
-import { type InsertMessage, type InsertTestimonial, type Testimonial, type BlogPost, type PhotoAlbum, type AlbumPhoto, type MarketingWork, type InsertPhotoAlbum, type InsertAlbumPhoto, type InsertMarketingWork } from "@shared/schema";
+import { type InsertMessage, type InsertTestimonial, type Testimonial, type BlogPost, type PhotoAlbum, type AlbumPhoto, type MarketingWork, type InsertPhotoAlbum, type InsertAlbumPhoto, type InsertMarketingWork, type Club, type InsertClub, type Project, type InsertProject, type Message } from "@shared/schema";
 import { useToast } from "@/hooks/use-toast";
 
 export function useBlogPosts() {
@@ -216,6 +216,116 @@ export function useDeleteMarketingItem() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [api.marketing.list.path] });
       toast({ title: "Item Deleted" });
+    },
+  });
+}
+
+// Blog CRUD
+export function useCreateBlogPost() {
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (data: { title: string; content: string; imageUrl?: string; publishedAt?: Date }) => {
+      const res = await fetch("/api/blog", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+      if (!res.ok) throw new Error("Failed to create post");
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/blog"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/blog/latest"] });
+      toast({ title: "Blog Post Created!" });
+    },
+    onError: () => { toast({ title: "Error", description: "Failed to create post", variant: "destructive" }); },
+  });
+}
+
+export function useDeleteBlogPost() {
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: number) => {
+      await fetch(`/api/blog/${id}`, { method: "DELETE" });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/blog"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/blog/latest"] });
+      toast({ title: "Post Deleted" });
+    },
+  });
+}
+
+// Clubs CRUD
+export function useCreateClub() {
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (data: InsertClub) => {
+      const res = await fetch("/api/clubs", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+      if (!res.ok) throw new Error("Failed to create club");
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [api.clubs.list.path] });
+      toast({ title: "Club Added!" });
+    },
+    onError: () => { toast({ title: "Error", description: "Failed to add club", variant: "destructive" }); },
+  });
+}
+
+export function useDeleteClub() {
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: number) => {
+      await fetch(`/api/clubs/${id}`, { method: "DELETE" });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [api.clubs.list.path] });
+      toast({ title: "Club Deleted" });
+    },
+  });
+}
+
+// Projects CRUD
+export function useCreateProject() {
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (data: InsertProject) => {
+      const res = await fetch("/api/projects", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) });
+      if (!res.ok) throw new Error("Failed to create project");
+      return res.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [api.projects.list.path] });
+      toast({ title: "Project Added!" });
+    },
+    onError: () => { toast({ title: "Error", description: "Failed to add project", variant: "destructive" }); },
+  });
+}
+
+export function useDeleteProject() {
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (id: number) => {
+      await fetch(`/api/projects/${id}`, { method: "DELETE" });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [api.projects.list.path] });
+      toast({ title: "Project Deleted" });
+    },
+  });
+}
+
+// Messages (inbox)
+export function useMessages() {
+  return useQuery<Message[]>({
+    queryKey: ["/api/messages"],
+    queryFn: async () => {
+      const res = await fetch("/api/messages");
+      if (!res.ok) throw new Error("Failed to fetch messages");
+      return res.json();
     },
   });
 }

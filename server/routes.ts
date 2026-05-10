@@ -84,6 +84,12 @@ export async function registerRoutes(
     }
   });
 
+  // Messages (admin)
+  app.get("/api/messages", async (req, res) => {
+    const msgs = await storage.getMessages();
+    res.json(msgs);
+  });
+
   // Blog
   app.get("/api/blog", async (req, res) => {
     const posts = await storage.getBlogPosts();
@@ -93,6 +99,59 @@ export async function registerRoutes(
   app.get("/api/blog/latest", async (req, res) => {
     const post = await storage.getLatestBlogPost();
     res.json(post || null);
+  });
+
+  app.post("/api/blog", async (req, res) => {
+    try {
+      const { insertBlogPostSchema } = await import("@shared/schema");
+      const input = insertBlogPostSchema.parse(req.body);
+      const post = await storage.createBlogPost(input);
+      res.status(201).json(post);
+    } catch (err) {
+      if (err instanceof z.ZodError) { res.status(400).json({ message: err.errors[0].message }); return; }
+      throw err;
+    }
+  });
+
+  app.delete("/api/blog/:id", async (req, res) => {
+    await storage.deleteBlogPost(Number(req.params.id));
+    res.status(204).end();
+  });
+
+  // Clubs CRUD
+  app.post("/api/clubs", async (req, res) => {
+    try {
+      const { insertClubSchema } = await import("@shared/schema");
+      const input = insertClubSchema.parse(req.body);
+      const club = await storage.createClub(input);
+      res.status(201).json(club);
+    } catch (err) {
+      if (err instanceof z.ZodError) { res.status(400).json({ message: err.errors[0].message }); return; }
+      throw err;
+    }
+  });
+
+  app.delete("/api/clubs/:id", async (req, res) => {
+    await storage.deleteClub(Number(req.params.id));
+    res.status(204).end();
+  });
+
+  // Projects CRUD
+  app.post("/api/projects", async (req, res) => {
+    try {
+      const { insertProjectSchema } = await import("@shared/schema");
+      const input = insertProjectSchema.parse(req.body);
+      const project = await storage.createProject(input);
+      res.status(201).json(project);
+    } catch (err) {
+      if (err instanceof z.ZodError) { res.status(400).json({ message: err.errors[0].message }); return; }
+      throw err;
+    }
+  });
+
+  app.delete("/api/projects/:id", async (req, res) => {
+    await storage.deleteProject(Number(req.params.id));
+    res.status(204).end();
   });
 
   // Photo Albums
