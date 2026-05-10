@@ -32,27 +32,27 @@ export default function About() {
               <h2 className="text-2xl font-bold text-white">Skills</h2>
               <ul className="grid grid-cols-2 gap-2 text-white/80">
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
                   Graphic Design
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
                   Marketing
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
                   STEM
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
                   Leadership
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
                   Photography
                 </li>
                 <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-purple-500"></div>
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
                   Videography
                 </li>
               </ul>

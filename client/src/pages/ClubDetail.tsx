@@ -48,13 +48,13 @@ export default function ClubDetail() {
         {/* Left: Info */}
         <div className="space-y-8">
           <div className="glass-panel p-8 rounded-3xl backdrop-blur-xl bg-white/5 border border-white/10 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-purple-500 to-pink-500 opacity-50"></div>
+            <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-primary to-accent opacity-50"></div>
             
             <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 rounded-xl bg-purple-500/20 text-purple-300">
+              <div className="p-3 rounded-xl bg-primary/20 text-primary">
                 <Users size={24} />
               </div>
-              <span className="text-purple-300 font-medium uppercase tracking-wider text-sm">{club.category} Club</span>
+              <span className="text-primary font-medium uppercase tracking-wider text-sm">{club.category} Club</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-4 text-white">
@@ -85,15 +85,15 @@ export default function ClubDetail() {
             <h3 className="text-xl font-bold mb-6 text-white">Key Contributions</h3>
             <ul className="space-y-4">
               <li className="flex gap-4 text-white/70">
-                <div className="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 shrink-0" />
+                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 shrink-0" />
                 <span>Impacted organizational growth through strategic leadership and community engagement.</span>
               </li>
               <li className="flex gap-4 text-white/70">
-                <div className="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 shrink-0" />
+                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 shrink-0" />
                 <span>Successfully managed high-profile projects and events with measurable success.</span>
               </li>
               <li className="flex gap-4 text-white/70">
-                <div className="w-1.5 h-1.5 rounded-full bg-purple-500 mt-2.5 shrink-0" />
+                <div className="w-1.5 h-1.5 rounded-full bg-primary mt-2.5 shrink-0" />
                 <span>Collaborated with diverse teams to achieve shared objectives and long-term goals.</span>
               </li>
             </ul>

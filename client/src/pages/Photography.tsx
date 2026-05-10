@@ -12,8 +12,8 @@ export default function Photography() {
         </div>
 
         <div className="flex flex-col items-center justify-center min-h-[400px] glass-card rounded-3xl p-12 text-center border border-white/10">
-          <div className="bg-purple-500/20 p-6 rounded-full mb-6">
-            <Camera className="text-purple-400" size={48} />
+          <div className="bg-primary/20 p-6 rounded-full mb-6">
+            <Camera className="text-primary" size={48} />
           </div>
           <h2 className="text-2xl font-bold text-white mb-4">Gallery Coming Soon</h2>
           <p className="text-white/60 max-w-md mx-auto leading-relaxed">
@@ -25,7 +25,7 @@ export default function Photography() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
           >
-            <div className="w-16 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full"></div>
+            <div className="w-16 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full"></div>
           </motion.div>
         </div>
       </div>

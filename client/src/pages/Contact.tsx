@@ -18,7 +18,7 @@ function TestimonialsSection() {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3 mb-2">
-        <Quote className="text-purple-400 w-6 h-6" />
+        <Quote className="text-primary w-6 h-6" />
         <h2 className="text-2xl font-bold text-white">Testimonials</h2>
       </div>
       
@@ -34,12 +34,12 @@ function TestimonialsSection() {
             <div className="space-y-3">
               <p className="text-white/80 text-sm italic leading-relaxed">"{t.content}"</p>
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-300 font-bold text-xs">
+                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs">
                   {t.name.charAt(0)}
                 </div>
                 <div>
                   <h4 className="text-white text-sm font-bold">{t.name}</h4>
-                  <p className="text-purple-300/60 text-[10px] uppercase tracking-wider">{t.role}</p>
+                  <p className="text-primary/60 text-[10px] uppercase tracking-wider">{t.role}</p>
                 </div>
               </div>
             </div>
@@ -109,8 +109,8 @@ export default function Contact() {
               <div className="glass-panel p-6 rounded-2xl space-y-4">
                 <h3 className="text-xl font-bold text-white mb-4">Find me online</h3>
                 <div className="grid grid-cols-2 gap-4">
-                  <a href="mailto:jeni.1245690@gmail.com" target="_blank" rel="noopener noreferrer" className="glass-button p-4 rounded-xl flex flex-col items-center justify-center gap-2 text-center hover:bg-purple-500/20 hover:border-purple-500/30 transition-all duration-300">
-                    <Mail size={24} className="text-purple-300" />
+                  <a href="mailto:jeni.1245690@gmail.com" target="_blank" rel="noopener noreferrer" className="glass-button p-4 rounded-xl flex flex-col items-center justify-center gap-2 text-center hover:bg-primary/20 hover:border-primary/30 transition-all duration-300">
+                    <Mail size={24} className="text-primary" />
                     <span className="text-sm font-medium">Email</span>
                     <span className="text-[10px] text-white/40 truncate w-full px-2">jeni.1245690@gmail.com</span>
                   </a>
@@ -152,7 +152,7 @@ export default function Contact() {
 
           {/* Right Column: Form Side */}
           <div className="glass-panel p-8 rounded-3xl relative overflow-hidden h-fit lg:sticky lg:top-24">
-            <div className="absolute top-0 right-0 p-32 bg-purple-500/10 blur-[100px] rounded-full pointer-events-none -mr-16 -mt-16"></div>
+            <div className="absolute top-0 right-0 p-32 bg-primary/10 blur-[100px] rounded-full pointer-events-none -mr-16 -mt-16"></div>
             
             <div className="flex items-center justify-between mb-6 relative z-10">
               <h2 className="text-2xl font-bold text-white">
@@ -163,7 +163,7 @@ export default function Contact() {
                   id="is-testimonial" 
                   checked={isTestimonial}
                   onCheckedChange={(checked) => setIsTestimonial(!!checked)}
-                  className="border-white/20 data-[state=checked]:bg-purple-500 data-[state=checked]:border-purple-500"
+                  className="border-white/20 data-[state=checked]:bg-primary data-[state=checked]:border-primary"
                 />
                 <label 
                   htmlFor="is-testimonial" 
@@ -187,7 +187,7 @@ export default function Contact() {
                           <Input 
                             placeholder="Your name" 
                             {...field} 
-                            className="bg-black/20 border-white/10 text-white placeholder:text-white/30 focus:border-purple-500/50 focus:ring-purple-500/20 h-12 rounded-xl"
+                            className="bg-black/20 border-white/10 text-white placeholder:text-white/30 focus:border-primary/50 focus:ring-primary/20 h-12 rounded-xl"
                           />
                         </FormControl>
                         <FormMessage className="text-red-300" />
@@ -206,7 +206,7 @@ export default function Contact() {
                             <Input 
                               placeholder="e.g. CEO at TechCorp" 
                               {...field} 
-                              className="bg-black/20 border-white/10 text-white placeholder:text-white/30 focus:border-purple-500/50 focus:ring-purple-500/20 h-12 rounded-xl"
+                              className="bg-black/20 border-white/10 text-white placeholder:text-white/30 focus:border-primary/50 focus:ring-primary/20 h-12 rounded-xl"
                             />
                           </FormControl>
                           <FormMessage className="text-red-300" />
@@ -225,7 +225,7 @@ export default function Contact() {
                               placeholder="your@email.com" 
                               type="email"
                               {...field} 
-                              className="bg-black/20 border-white/10 text-white placeholder:text-white/30 focus:border-purple-500/50 focus:ring-purple-500/20 h-12 rounded-xl"
+                              className="bg-black/20 border-white/10 text-white placeholder:text-white/30 focus:border-primary/50 focus:ring-primary/20 h-12 rounded-xl"
                             />
                           </FormControl>
                           <FormMessage className="text-red-300" />
@@ -247,7 +247,7 @@ export default function Contact() {
                         <Textarea 
                           placeholder={isTestimonial ? "Share your experience working with me..." : "Tell me about your project..."} 
                           {...field} 
-                          className="bg-black/20 border-white/10 text-white placeholder:text-white/30 focus:border-purple-500/50 focus:ring-purple-500/20 min-h-[150px] rounded-xl resize-none"
+                          className="bg-black/20 border-white/10 text-white placeholder:text-white/30 focus:border-primary/50 focus:ring-primary/20 min-h-[150px] rounded-xl resize-none"
                         />
                       </FormControl>
                       <FormMessage className="text-red-300" />
@@ -279,7 +279,7 @@ export default function Contact() {
               <motion.p 
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="text-center mt-4 text-xs text-purple-300/60 flex items-center justify-center gap-1"
+                className="text-center mt-4 text-xs text-primary/60 flex items-center justify-center gap-1"
               >
                 <CheckCircle2 size={12} /> Your testimonial will be visible after submission
               </motion.p>

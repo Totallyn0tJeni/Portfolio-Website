@@ -22,7 +22,7 @@ export default function Clubs() {
     <PageTransition>
       <div className="space-y-12">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-4">
+          <h1 className="text-4xl font-display font-bold text-gradient mb-4">
             My Clubs & Leadership
           </h1>
           <p className="text-white/70 max-w-2xl mx-auto">
@@ -65,8 +65,8 @@ export default function Clubs() {
 
                 <div className="flex-1 space-y-4">
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-2">
-                    <h2 className="text-2xl font-bold text-white group-hover:text-purple-300 transition-colors">{club.name}</h2>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/20 border border-purple-500/30 text-purple-200 text-sm font-medium w-fit">
+                    <h2 className="text-2xl font-bold text-white group-hover:text-primary transition-colors">{club.name}</h2>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-sm font-medium w-fit">
                       <Award size={14} />
                       {club.role}
                     </span>
@@ -76,7 +76,7 @@ export default function Clubs() {
                     {club.description}
                   </p>
 
-                  <div className="pt-2 flex items-center gap-2 text-purple-300 font-medium group-hover:translate-x-1 transition-transform">
+                  <div className="pt-2 flex items-center gap-2 text-primary font-medium group-hover:translate-x-1 transition-transform">
                     Learn more <ArrowRight size={16} />
                   </div>
                 </div>
@@ -109,8 +109,8 @@ export default function Clubs() {
                 transition={{ delay: 0.2 + (idx * 0.05) }}
                 className="glass-card p-6 rounded-2xl flex flex-col h-full cursor-pointer hover:bg-white/10 transition-colors group"
               >
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors">{club.name}</h3>
-                <p className="text-purple-300 text-sm font-medium mb-3">{club.role}</p>
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">{club.name}</h3>
+                <p className="text-primary text-sm font-medium mb-3">{club.role}</p>
                 <p className="text-white/70 text-sm flex-grow mb-4">
                   {club.description}
                 </p>

@@ -58,10 +58,10 @@ export default function Coding() {
               <div className="flex flex-col lg:flex-row gap-6 justify-between items-start">
                 <div className="space-y-4 flex-1">
                   <div className="flex items-center gap-3">
-                    <div className="p-3 bg-white/10 rounded-xl text-purple-300">
+                    <div className="p-3 bg-primary/10 rounded-xl text-primary">
                       <Code2 size={24} />
                     </div>
-                    <h2 className="text-2xl font-bold text-white group-hover:text-purple-200 transition-colors">
+                    <h2 className="text-2xl font-bold text-white group-hover:text-primary transition-colors">
                       {project.title}
                     </h2>
                   </div>
