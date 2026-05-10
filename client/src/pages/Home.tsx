@@ -1,19 +1,18 @@
 import { PageTransition } from "@/components/PageTransition";
-import { Github, Twitter, Linkedin, Mail, FileText, ArrowRight, Calendar, MapPin, Briefcase, Instagram } from "lucide-react";
+import { Github, Linkedin, Mail, FileText, ArrowRight, Calendar, MapPin, Briefcase, Instagram } from "lucide-react";
 import { motion } from "framer-motion";
 import { useLatestBlogPost } from "@/hooks/use-portfolio";
 import { format } from "date-fns";
 import { Link } from "wouter";
-import heroImage from "@assets/IMG_8076_1771273839233.jpeg";
 
 export default function Home() {
   const { data: latestPost } = useLatestBlogPost();
 
   return (
     <PageTransition className="flex flex-col items-center min-h-screen px-6 pt-32 pb-20">
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-12 w-full max-w-7xl relative">
+      <div className="flex flex-col items-center justify-center gap-12 w-full max-w-4xl relative">
         {/* Intro Text */}
-        <div className="lg:w-1/2 text-left space-y-8 z-10">
+        <div className="text-center space-y-8 z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -36,13 +35,13 @@ export default function Home() {
               Frontend Developer
             </h2>
 
-            <p className="text-lg text-white/60 max-w-lg leading-relaxed">
+            <p className="text-lg text-white/60 max-w-xl mx-auto leading-relaxed">
               I create beautiful, functional, and user-centered digital experiences. With 
               passion for technology and design, I bring ideas to life through 
               clean code and thoughtful design.
             </p>
 
-            <div className="flex flex-wrap items-center gap-6 text-white/50 text-sm">
+            <div className="flex flex-wrap items-center justify-center gap-6 text-white/50 text-sm">
               <div className="flex items-center gap-2">
                 <MapPin size={16} className="text-primary" />
                 Based in Ontario
@@ -53,7 +52,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center justify-center gap-4">
               <Link href="/contact">
                 <button className="px-8 py-3 rounded-full bg-white text-black font-bold flex items-center gap-2 hover:bg-white/90 transition-all">
                   Hire Me <ArrowRight size={18} />
@@ -66,7 +65,7 @@ export default function Home() {
               </a>
             </div>
 
-            <div className="flex items-center gap-6 pt-4">
+            <div className="flex items-center justify-center gap-6 pt-4">
               <span className="text-sm text-white/40 font-medium uppercase tracking-wider">Follow me:</span>
               <div className="flex items-center gap-4">
                 <a href="https://github.com/Totallyn0tJeni" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors" title="GitHub">
@@ -87,26 +86,6 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-
-        {/* Hero Image Section */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          className="lg:w-1/2 relative"
-        >
-          <div className="relative z-10 w-full max-w-[500px] mx-auto aspect-square rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-            <img
-              src={heroImage}
-              alt="Jenisha Patel"
-              className="w-full h-full object-cover"
-            />
-            {/* Visual elements from reference image could be added here if needed */}
-          </div>
-          
-          {/* Background Glow */}
-          <div className="absolute -inset-4 bg-primary/20 blur-3xl -z-10 rounded-full"></div>
-        </motion.div>
       </div>
 
       {/* Latest Blog Post Section */}
@@ -155,19 +134,5 @@ export default function Home() {
         </motion.div>
       )}
     </PageTransition>
-  );
-}
-
-function SocialButton({ href, icon: Icon, label }: { href: string; icon: any; label: string }) {
-  return (
-    <a 
-      href={href}
-      target="_blank" 
-      rel="noopener noreferrer"
-      className="glass-button flex items-center gap-2 px-6 py-3 rounded-xl font-medium"
-    >
-      <Icon size={20} />
-      <span>{label}</span>
-    </a>
   );
 }
