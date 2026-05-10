@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Club } from "@shared/schema";
 import { api } from "@shared/routes";
 import { PageTransition } from "@/components/PageTransition";
-import { ArrowLeft, ExternalLink, Users } from "lucide-react";
+import { ArrowLeft, ExternalLink, Users, Camera } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function ClubDetail() {
@@ -103,28 +103,33 @@ export default function ClubDetail() {
         {/* Right: Gallery */}
         <div className="space-y-6">
           <h3 className="text-2xl font-bold text-white px-2">Photo Gallery</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {(club.images && club.images.length > 0 ? club.images : [
-              "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4",
-              "https://images.unsplash.com/photo-1522202176988-66273c2fd55f",
-              "https://images.unsplash.com/photo-1523240795612-9a054b0db644",
-              "https://images.unsplash.com/photo-1519389950473-47ba0277781c"
-            ]).map((img, idx) => (
-              <div 
-                key={idx} 
-                className="aspect-square rounded-2xl overflow-hidden border border-white/10 glass-panel group relative"
-              >
-                <img 
-                  src={img} 
-                  alt={`${club.name} photo ${idx + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
-                  <span className="text-xs font-medium text-white/80">View full size</span>
+          {club.images && club.images.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {club.images.map((img, idx) => (
+                <div 
+                  key={idx} 
+                  className="aspect-square rounded-2xl overflow-hidden border border-white/10 glass-panel group relative"
+                >
+                  <img 
+                    src={img} 
+                    alt={`${club.name} photo ${idx + 1}`}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                    <span className="text-xs font-medium text-white/80">View full size</span>
+                  </div>
                 </div>
+              ))}
+            </div>
+          ) : (
+            <div className="glass-panel rounded-3xl border border-white/10 flex flex-col items-center justify-center py-20 gap-4 text-center">
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                <Camera size={32} className="text-primary/60" />
               </div>
-            ))}
-          </div>
+              <p className="text-white/50 font-medium">Photos Coming Soon</p>
+              <p className="text-white/30 text-sm max-w-xs">Photos from this club's events and activities will be added here shortly.</p>
+            </div>
+          )}
         </div>
       </div>
     </PageTransition>

@@ -1,6 +1,6 @@
 import { PageTransition } from "@/components/PageTransition";
 import { useClubs } from "@/hooks/use-portfolio";
-import { ExternalLink, Award, ArrowRight } from "lucide-react";
+import { ExternalLink, Award, ArrowRight, Camera } from "lucide-react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 
@@ -40,18 +40,27 @@ export default function Clubs() {
                 transition={{ delay: idx * 0.1 }}
                 className="glass-panel p-6 md:p-8 rounded-3xl flex flex-col md:flex-row gap-8 items-start cursor-pointer hover:bg-white/10 transition-colors group"
               >
-                {/* Image Placeholder Gallery */}
+                {/* Image / Coming Soon */}
                 <div className="w-full md:w-1/3 aspect-video bg-white/5 rounded-2xl overflow-hidden border border-white/10 flex items-center justify-center relative">
-                  <img 
-                    src={`https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&q=80&auto=format&fit=crop`} 
-                    alt={club.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100"
-                  />
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="text-white font-medium border border-white/30 px-4 py-2 rounded-full glass-panel flex items-center gap-2">
-                      View Details <ArrowRight size={16} />
-                    </span>
-                  </div>
+                  {club.images && club.images.length > 0 ? (
+                    <>
+                      <img 
+                        src={club.images[0]} 
+                        alt={club.name}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                      />
+                      <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span className="text-white font-medium border border-white/30 px-4 py-2 rounded-full glass-panel flex items-center gap-2">
+                          View Details <ArrowRight size={16} />
+                        </span>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="flex flex-col items-center gap-2 text-white/30">
+                      <Camera size={28} className="text-primary/40" />
+                      <span className="text-xs font-medium">Photos Coming Soon</span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex-1 space-y-4">
