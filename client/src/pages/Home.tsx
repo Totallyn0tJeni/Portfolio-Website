@@ -10,9 +10,9 @@ export default function Home() {
 
   return (
     <PageTransition className="flex flex-col items-center min-h-screen px-6 pt-32 pb-20">
-      <div className="flex flex-col items-center justify-center gap-12 w-full max-w-4xl relative">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-12 w-full max-w-5xl relative">
         {/* Intro Text */}
-        <div className="text-center space-y-8 z-10">
+        <div className="text-center lg:text-left space-y-8 z-10 flex-1">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -65,7 +65,7 @@ export default function Home() {
               </a>
             </div>
 
-            <div className="flex items-center justify-center gap-6 pt-4">
+            <div className="flex items-center justify-center lg:justify-start gap-6 pt-4">
               <span className="text-sm text-white/40 font-medium uppercase tracking-wider">Follow me:</span>
               <div className="flex items-center gap-4">
                 <a href="https://github.com/Totallyn0tJeni" target="_blank" rel="noopener noreferrer" className="text-white/60 hover:text-white transition-colors" title="GitHub">
@@ -86,6 +86,25 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
+
+        {/* Hero Photo */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+          className="shrink-0 lg:w-80 xl:w-96"
+        >
+          <div className="relative">
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/30 to-accent/20 blur-2xl scale-110" />
+            <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+              <img
+                src="/Images/jenisha-hero.png"
+                alt="Jenisha Patel"
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
+          </div>
+        </motion.div>
       </div>
 
       {/* Latest Blog Post Section */}
