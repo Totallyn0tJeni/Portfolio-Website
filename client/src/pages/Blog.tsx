@@ -46,11 +46,11 @@ export default function Blog() {
                     </div>
                   )}
                   <div className="flex-1 p-8 space-y-4">
-                    <div className="flex items-center gap-2 text-xs font-medium text-purple-400">
+                    <div className="flex items-center gap-2 text-xs font-medium text-primary">
                       <Calendar size={14} />
                       {post.publishedAt && format(new Date(post.publishedAt), 'MMMM d, yyyy')}
                     </div>
-                    <h2 className="text-2xl font-bold text-white group-hover:text-purple-300 transition-colors">
+                    <h2 className="text-2xl font-bold text-white group-hover:text-primary transition-colors">
                       {post.title}
                     </h2>
                     <p className="text-white/70 leading-relaxed line-clamp-3">
