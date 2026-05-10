@@ -2,7 +2,7 @@ import { PageTransition } from "@/components/PageTransition";
 import { useBlogPosts } from "@/hooks/use-portfolio";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
-import { Calendar, ArrowRight } from "lucide-react";
+import { Calendar, ImageOff } from "lucide-react";
 
 export default function Blog() {
   const { data: posts, isLoading } = useBlogPosts();
@@ -36,15 +36,20 @@ export default function Blog() {
                 className="glass-panel group overflow-hidden rounded-3xl"
               >
                 <div className="flex flex-col md:flex-row">
-                  {post.imageUrl && (
-                    <div className="md:w-1/3 h-48 md:h-auto overflow-hidden">
+                  <div className="md:w-1/3 h-48 md:h-auto overflow-hidden bg-white/5 flex items-center justify-center border-r border-white/5 shrink-0">
+                    {post.imageUrl ? (
                       <img 
                         src={post.imageUrl} 
                         alt={post.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
-                    </div>
-                  )}
+                    ) : (
+                      <div className="flex flex-col items-center gap-2 text-white/20 p-6 text-center">
+                        <ImageOff size={28} />
+                        <span className="text-xs">Photo Coming Soon</span>
+                      </div>
+                    )}
+                  </div>
                   <div className="flex-1 p-8 space-y-4">
                     <div className="flex items-center gap-2 text-xs font-medium text-primary">
                       <Calendar size={14} />

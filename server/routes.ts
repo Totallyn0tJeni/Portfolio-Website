@@ -3,7 +3,9 @@ import type { Server } from "http";
 import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
-import { insertTestimonialSchema } from "@shared/schema";
+import { insertTestimonialSchema, blogPosts } from "@shared/schema";
+import { db } from "./db";
+import { like } from "drizzle-orm";
 
 export async function registerRoutes(
   httpServer: Server,
@@ -253,14 +255,18 @@ async function seedDatabase() {
     });
   }
 
-  const blogPosts = await storage.getBlogPosts();
-  const blogTitles = blogPosts.map(p => p.title);
+  // Remove any stock/Unsplash images from existing blog posts
+  await db.update(blogPosts)
+    .set({ imageUrl: null })
+    .where(like(blogPosts.imageUrl, '%unsplash%'));
+
+  const existingPosts = await storage.getBlogPosts();
+  const blogTitles = existingPosts.map(p => p.title);
 
   if (!blogTitles.includes("Welcome to My New Portfolio Update Section!")) {
     await storage.createBlogPost({
       title: "Welcome to My New Portfolio Update Section!",
       content: "I've recently updated my portfolio to include this new blog and updates section. Here, I'll be sharing my latest projects, marketing insights, and personal updates on my journey in marketing and tech. Stay tuned for more content coming soon!",
-      imageUrl: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=800"
     });
   }
 
@@ -268,7 +274,6 @@ async function seedDatabase() {
     await storage.createBlogPost({
       title: "FRC Provincials 2025 — Chinguacousy Robotics",
       content: "Competed at the FRC Ontario Provincial Championship representing Chinguacousy Robotics. As Business Co-Lead & Social Media Coordinator, I led our team's outreach and media presence throughout the event — documenting matches, scouting competitors, and keeping our community engaged online. It was an incredible experience showcasing the hard work our team put in all season, and a proud moment as we represented our school on a provincial stage.",
-      imageUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800"
     });
   }
 
@@ -276,7 +281,6 @@ async function seedDatabase() {
     await storage.createBlogPost({
       title: "WolfHacks — Hackathon Event",
       content: "WolfHacks is a student-run hackathon organized by the Sci-Tech Activity Committee (STAC) at Chinguacousy Secondary School. As part of the Marketing & PR team, I helped design promotional materials, coordinated social media campaigns, and drove awareness leading up to the event. WolfHacks brought together students to collaborate, build, and innovate — and seeing it all come together was incredibly rewarding. The event featured coding challenges, workshops, and prizes, drawing strong participation from the student community.",
-      imageUrl: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=800"
     });
   }
 }
