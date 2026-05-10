@@ -319,16 +319,50 @@ async function seedDatabase() {
 
   await db.update(blogPosts).set({ imageUrl: null }).where(like(blogPosts.imageUrl, '%unsplash%'));
 
+  // Remove old FRC 2025 post — replaced by 2026
+  await storage.deleteBlogPostByTitle("FRC Provincials 2025 — Chinguacousy Robotics");
+
   const existingPosts = await storage.getBlogPosts();
   const blogTitles = existingPosts.map(p => p.title);
 
-  if (!blogTitles.includes("Welcome to My New Portfolio Update Section!")) {
-    await storage.createBlogPost({ title: "Welcome to My New Portfolio Update Section!", content: "I've recently updated my portfolio to include this new blog and updates section. Here, I'll be sharing my latest projects, marketing insights, and personal updates on my journey in marketing and tech. Stay tuned for more content coming soon!" });
+  // Posts seeded oldest → newest so desc sort shows newest (WolfHacks) at top
+  if (!blogTitles.includes("CNLC 2026 — Canadian National Leadership Conference")) {
+    await storage.createBlogPost({
+      title: "CNLC 2026 — Canadian National Leadership Conference",
+      content: "Attended the Canadian National Leadership Conference (CNLC) in February 2026, connecting with student leaders from across the country. The conference brought together driven young leaders for workshops, keynote sessions, and networking opportunities focused on leadership development, civic engagement, and making a meaningful impact. It was an incredible experience to exchange ideas, build national connections, and grow as a leader alongside some of Canada's most passionate students.",
+      publishedAt: new Date("2026-02-26"),
+    });
   }
-  if (!blogTitles.includes("FRC Provincials 2025 — Chinguacousy Robotics")) {
-    await storage.createBlogPost({ title: "FRC Provincials 2025 — Chinguacousy Robotics", content: "Competed at the FRC Ontario Provincial Championship representing Chinguacousy Robotics. As Business Co-Lead & Social Media Coordinator, I led our team's outreach and media presence throughout the event — documenting matches, scouting competitors, and keeping our community engaged online. It was an incredible experience showcasing the hard work our team put in all season, and a proud moment as we represented our school on a provincial stage." });
+
+  if (!blogTitles.includes("Robotics Competitions 2026 — Chinguacousy Robotics")) {
+    await storage.createBlogPost({
+      title: "Robotics Competitions 2026 — Chinguacousy Robotics",
+      content: "Competed in the 2026 FRC season representing Chinguacousy Robotics. As Business Co-Lead & Social Media Coordinator, I managed our team's outreach strategy, documenting each competition through photography and videography, running our social media presence, and leading scouting efforts to support our alliance selections. Every competition was an opportunity to showcase our team's hard work and dedication — from build season all the way to the competition floor.",
+      publishedAt: new Date("2026-03-15"),
+    });
   }
+
+  if (!blogTitles.includes("CYCS 2026 — Canadian Youth Changemakers Summit")) {
+    await storage.createBlogPost({
+      title: "CYCS 2026 — Canadian Youth Changemakers Summit",
+      content: "Participated in the Canadian Youth Changemakers Summit (CYCS) 2026, a national gathering of youth committed to social change and community impact. The summit featured panels, workshops, and collaborative sessions on advocacy, entrepreneurship, and leadership. It was a powerful reminder of the impact young people can have when given the right platform — and an inspiring opportunity to connect with changemakers from every corner of Canada.",
+      publishedAt: new Date("2026-04-10"),
+    });
+  }
+
+  if (!blogTitles.includes("FRC Provincials 2026 — Chinguacousy Robotics")) {
+    await storage.createBlogPost({
+      title: "FRC Provincials 2026 — Chinguacousy Robotics",
+      content: "Competed at the FRC Ontario Provincial Championship 2026 representing Chinguacousy Robotics. As Business Co-Lead & Social Media Coordinator, I led our team's outreach and media presence throughout the event — documenting matches, scouting competitors, and keeping our community engaged online. It was an incredible experience showcasing the hard work our team put in all season, and a proud moment as we represented our school on a provincial stage.",
+      publishedAt: new Date("2026-04-25"),
+    });
+  }
+
   if (!blogTitles.includes("WolfHacks — Hackathon Event")) {
-    await storage.createBlogPost({ title: "WolfHacks — Hackathon Event", content: "WolfHacks is a student-run hackathon organized by the Sci-Tech Activity Committee (STAC) at Chinguacousy Secondary School. As part of the Marketing & PR team, I helped design promotional materials, coordinated social media campaigns, and drove awareness leading up to the event. WolfHacks brought together students to collaborate, build, and innovate — and seeing it all come together was incredibly rewarding. The event featured coding challenges, workshops, and prizes, drawing strong participation from the student community." });
+    await storage.createBlogPost({
+      title: "WolfHacks — Hackathon Event",
+      content: "WolfHacks is a student-run hackathon organized by the Sci-Tech Activity Committee (STAC) at Chinguacousy Secondary School. As part of the Marketing & PR team, I helped design promotional materials, coordinated social media campaigns, and drove awareness leading up to the event. WolfHacks brought together students to collaborate, build, and innovate — and seeing it all come together was incredibly rewarding. The event featured coding challenges, workshops, and prizes, drawing strong participation from the student community.",
+      publishedAt: new Date("2026-05-10"),
+    });
   }
 }

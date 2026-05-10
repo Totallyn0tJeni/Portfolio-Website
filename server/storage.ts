@@ -25,6 +25,7 @@ export interface IStorage {
   createMessage(message: InsertMessage): Promise<Message>;
   createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial>;
   createBlogPost(post: InsertBlogPost): Promise<BlogPost>;
+  deleteBlogPostByTitle(title: string): Promise<void>;
   createClub(club: InsertClub): Promise<Club>;
   createProject(project: InsertProject): Promise<Project>;
 
@@ -88,6 +89,10 @@ export class DatabaseStorage implements IStorage {
   async createBlogPost(post: InsertBlogPost): Promise<BlogPost> {
     const [newPost] = await db.insert(blogPosts).values(post).returning();
     return newPost;
+  }
+
+  async deleteBlogPostByTitle(title: string): Promise<void> {
+    await db.delete(blogPosts).where(eq(blogPosts.title, title));
   }
 
   async createClub(club: InsertClub): Promise<Club> {
