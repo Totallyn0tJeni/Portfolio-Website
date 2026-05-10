@@ -18,6 +18,7 @@ import Coding from "@/pages/Coding";
 import Contact from "@/pages/Contact";
 import Photography from "@/pages/Photography";
 
+import Admin from "@/pages/Admin";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -33,6 +34,7 @@ function Router() {
         <Route path="/coding" component={Coding} />
         <Route path="/contact" component={Contact} />
         <Route path="/photography" component={Photography} />
+        <Route path="/admin" component={Admin} />
         
         <Route component={NotFound} />
       </Switch>

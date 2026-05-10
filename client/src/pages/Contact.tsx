@@ -136,6 +136,13 @@ export default function Contact() {
                     <span className="text-sm font-medium">LinkedIn</span>
                     <span className="text-[10px] text-white/40 truncate w-full px-2">jenisha-patel18</span>
                   </a>
+                  <a href="https://www.canva.com/design/DAGnihBJLbU/e45T2GcELw6rjd8yT_Ol5Q/view" target="_blank" rel="noopener noreferrer" className="glass-button p-4 rounded-xl flex flex-col items-center justify-center gap-2 text-center hover:bg-teal-500/20 hover:border-teal-500/30 transition-all duration-300">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" className="text-teal-300">
+                      <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.445 15.03c-.522.9-1.277 1.61-2.187 2.085-.91.476-1.94.716-3.09.716-1.09 0-2.088-.225-2.994-.676a5.863 5.863 0 0 1-2.13-1.88 5.178 5.178 0 0 1-.87-2.213 6.25 6.25 0 0 1 .034-2.03 5.9 5.9 0 0 1 .87-2.19 5.708 5.708 0 0 1 2.086-1.822c.872-.47 1.88-.705 3.024-.705.76 0 1.47.118 2.13.354.66.236 1.22.566 1.68.99.46.423.8.935 1.02 1.537a4.7 4.7 0 0 1 .225 2.054h-7.41a3.1 3.1 0 0 0 .112.944c.112.37.292.695.54.976.247.28.56.505.937.674.377.17.817.254 1.32.254.617 0 1.135-.136 1.554-.407.42-.27.716-.636.887-1.097l2.264.436z"/>
+                    </svg>
+                    <span className="text-sm font-medium">Canva</span>
+                    <span className="text-[10px] text-white/40 truncate w-full px-2">Portfolio</span>
+                  </a>
                   <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="glass-button p-4 rounded-xl flex flex-col items-center justify-center gap-2 text-center hover:bg-emerald-500/20 hover:border-emerald-500/30 transition-all duration-300 col-span-2">
                     <FileText size={24} className="text-emerald-300" />
                     <span className="text-sm">Download Resume</span>
