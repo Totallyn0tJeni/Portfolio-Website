@@ -2,7 +2,7 @@ import { PageTransition } from "@/components/PageTransition";
 import { useBlogPosts } from "@/hooks/use-portfolio";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
-import { Calendar, ImageOff } from "lucide-react";
+import { Calendar, Camera } from "lucide-react";
 
 export default function Blog() {
   const { data: posts, isLoading } = useBlogPosts();
@@ -36,7 +36,7 @@ export default function Blog() {
                 className="glass-panel group overflow-hidden rounded-3xl"
               >
                 <div className="flex flex-col md:flex-row">
-                  <div className="md:w-1/3 h-48 md:h-auto overflow-hidden bg-white/5 flex items-center justify-center border-r border-white/5 shrink-0">
+                  <div className="md:w-1/3 h-48 md:h-auto overflow-hidden shrink-0 relative">
                     {post.imageUrl ? (
                       <img 
                         src={post.imageUrl} 
@@ -44,9 +44,11 @@ export default function Blog() {
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     ) : (
-                      <div className="flex flex-col items-center gap-2 text-white/20 p-6 text-center">
-                        <ImageOff size={28} />
-                        <span className="text-xs">Photo Coming Soon</span>
+                      <div className="w-full h-full min-h-[192px] flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-primary/20 via-primary/5 to-accent/20 border-r border-white/5">
+                        <div className="p-4 rounded-full bg-white/5 border border-white/10">
+                          <Camera size={28} className="text-primary/60" />
+                        </div>
+                        <span className="text-white/30 text-xs font-medium tracking-wide uppercase">Photo Coming Soon</span>
                       </div>
                     )}
                   </div>
