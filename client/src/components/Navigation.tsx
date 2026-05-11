@@ -148,7 +148,12 @@ export function Navigation() {
           {navItems.map((item) => {
             const isActive = location === item.path;
             return (
-              <Link key={item.path} href={item.path} className="relative px-4 py-2.5 rounded-xl transition-colors group">
+              <Link
+                key={item.path}
+                href={item.path}
+                className="relative px-4 py-2.5 rounded-xl transition-all duration-200 group"
+                style={isActive ? { filter: "drop-shadow(0 0 8px hsl(var(--primary) / 0.5))" } : undefined}
+              >
                 {isActive && (
                   <motion.div
                     layoutId="activeTab"
@@ -156,8 +161,8 @@ export function Navigation() {
                     transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                   />
                 )}
-                <div className={`relative flex items-center gap-2 font-medium text-[15px] transition-colors ${isActive ? "text-white" : "text-white/60 group-hover:text-white"}`}>
-                  <item.icon size={17} className={isActive ? "text-primary" : ""} />
+                <div className={`relative flex items-center gap-2 font-medium text-[15px] transition-all duration-200 ${isActive ? "text-white" : "text-white/60 group-hover:text-white group-hover:[filter:drop-shadow(0_0_6px_hsl(var(--primary)/0.4))]"}`}>
+                  <item.icon size={17} className={isActive ? "text-primary" : "group-hover:text-primary transition-colors duration-200"} />
                   <span>{item.label}</span>
                 </div>
               </Link>
