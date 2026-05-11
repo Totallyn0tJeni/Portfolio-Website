@@ -1,7 +1,7 @@
 import { PageTransition } from "@/components/PageTransition";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Camera, Palette, Plus, Trash2, FolderOpen, Image as ImageIcon, ChevronDown, FileText, Users, Code, Mail, Calendar } from "lucide-react";
+import { Camera, Palette, Plus, Trash2, FolderOpen, Image as ImageIcon, ChevronDown, FileText, Users, Code, Mail, Calendar, Settings2 } from "lucide-react";
 import {
   usePhotoAlbums, useAlbumPhotos, useCreateAlbum, useDeleteAlbum, useAddPhoto, useDeletePhoto,
   useMarketingWork, useCreateMarketingItem, useDeleteMarketingItem,
@@ -348,6 +348,67 @@ function MessagesSection() {
   );
 }
 
+// ── Passcode Gate ─────────────────────────────────────────────────────────────
+const PASSCODE = "jenisha2026";
+
+function PasscodeGate({ onUnlock }: { onUnlock: () => void }) {
+  const [value, setValue] = useState("");
+  const [error, setError] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (value === PASSCODE) {
+      onUnlock();
+    } else {
+      setError(true);
+      setValue("");
+      setTimeout(() => setError(false), 1500);
+    }
+  };
+
+  return (
+    <div className="flex items-center justify-center min-h-[70vh]">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="glass-panel p-10 rounded-3xl w-full max-w-sm text-center space-y-6"
+      >
+        <div className="flex justify-center">
+          <div className="p-5 rounded-full bg-primary/10 border border-primary/20">
+            <Settings2 size={32} className="text-primary" />
+          </div>
+        </div>
+        <div className="space-y-1">
+          <h1 className="text-2xl font-display font-bold text-white">Admin Access</h1>
+          <p className="text-white/40 text-sm">Enter the passcode to continue</p>
+        </div>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <Input
+            type="password"
+            placeholder="Passcode"
+            value={value}
+            onChange={e => setValue(e.target.value)}
+            className={`bg-white/5 border text-white placeholder:text-white/30 text-center tracking-widest text-lg ${error ? "border-red-500/70" : "border-white/10"}`}
+            autoFocus
+          />
+          {error && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-red-400 text-xs"
+            >
+              Incorrect passcode. Try again.
+            </motion.p>
+          )}
+          <Button type="submit" className="w-full bg-primary text-white hover:bg-primary/80">
+            Unlock
+          </Button>
+        </form>
+      </motion.div>
+    </div>
+  );
+}
+
 // ── Main ──────────────────────────────────────────────────────────────────────
 type Tab = "photography" | "marketing" | "blog" | "clubs" | "coding" | "messages";
 
@@ -361,7 +422,16 @@ const TABS: { id: Tab; label: string; icon: React.ElementType }[] = [
 ];
 
 export default function Admin() {
+  const [unlocked, setUnlocked] = useState(false);
   const [tab, setTab] = useState<Tab>("photography");
+
+  if (!unlocked) {
+    return (
+      <PageTransition>
+        <PasscodeGate onUnlock={() => setUnlocked(true)} />
+      </PageTransition>
+    );
+  }
 
   return (
     <PageTransition>
